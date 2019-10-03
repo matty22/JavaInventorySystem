@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.ProductController">
    <children>
-      <Button fx:id="searchButton" layoutX="678.0" layoutY="23.0" mnemonicParsing="false" prefWidth="100.0" text="Search" />
+      <Button fx:id="searchButton" layoutX="678.0" layoutY="23.0" mnemonicParsing="false" onAction="#searchButtonHandler" prefWidth="100.0" text="Search" />
       <TextField fx:id="searchBox" layoutX="800.0" layoutY="23.0" />
       <Label fx:id="screenLabel" layoutX="52.0" layoutY="47.0" text="Add Product">
          <font>
@@ -33,10 +33,10 @@
             <TableColumn prefWidth="110.0" text="Price per unit" />
          </columns>
       </TableView>
-      <Button fx:id="addButton" layoutX="867.0" layoutY="223.0" mnemonicParsing="false" prefWidth="100.0" text="Add" />
-      <Button fx:id="deleteButton" layoutX="867.0" layoutY="424.0" mnemonicParsing="false" prefWidth="100.0" text="Delete" />
-      <Button fx:id="cancelButton" layoutX="867.0" layoutY="459.0" mnemonicParsing="false" prefWidth="100.0" text="Cancel" />
-      <Button fx:id="saveButton" layoutX="757.0" layoutY="459.0" mnemonicParsing="false" prefWidth="100.0" text="Save" />
+      <Button fx:id="addButton" layoutX="867.0" layoutY="223.0" mnemonicParsing="false" onAction="#addButtonHandler" prefWidth="100.0" text="Add" />
+      <Button fx:id="deleteButton" layoutX="867.0" layoutY="424.0" mnemonicParsing="false" onAction="#deleteButtonHandler" prefWidth="100.0" text="Delete" />
+      <Button fx:id="cancelButton" layoutX="867.0" layoutY="459.0" mnemonicParsing="false" onAction="#cancelButtonHandler" prefWidth="100.0" text="Cancel" />
+      <Button fx:id="saveButton" layoutX="757.0" layoutY="459.0" mnemonicParsing="false" onAction="#saveButtonHandler" prefWidth="100.0" text="Save" />
       <Label layoutX="52.0" layoutY="129.0" text="ID" />
       <TextField fx:id="idField" layoutX="126.0" layoutY="124.0" />
       <Label layoutX="52.0" layoutY="165.0" text="Name" />
