@@ -38,4 +38,13 @@ public class InhousePartController implements Initializable {
         // TODO
     }    
     
+    // Button handlers
+    public void saveButtonHandler() {
+        // do something
+    }
+    
+    public void cancelButtonHandler() {
+        // do something
+    }
+    
 }
