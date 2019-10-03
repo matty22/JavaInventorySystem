@@ -39,4 +39,45 @@ public class MainController implements Initializable {
         // TODO
     }    
     
+    
+    // Main screen parts panel button handlers
+    public void partsSearchButtonHandler() {
+        // do something
+    }
+    
+    public void partsAddButtonHandler() {
+        // do something
+    }
+    
+    public void partsModifyButtonHandler() {
+        // do something
+    }
+    
+    public void partsDeleteButtonHandler() {
+        // do something
+    }
+    
+    
+    // Main screen products panel button handlers
+    public void productsSearchButtonHandler() {
+        // do something
+    }
+    
+    public void productsAddButtonHandler() {
+        // do something
+    }
+    
+    public void productsModifyButtonHandler() {
+        // do something
+    }
+    
+    public void productsDeleteButtonHandler() {
+        // do something
+    }
+    
+    // Exit button handler
+    public void exitButtonHandler() {
+        // do something
+    }
+    
 }
