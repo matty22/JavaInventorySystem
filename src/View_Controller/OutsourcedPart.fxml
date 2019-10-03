@@ -7,31 +7,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="523.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="View_Controller.OutsourcedPartController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.OutsourcedPartController">
    <children>
-      <Label layoutX="48.0" layoutY="51.0" text="Add/Modify Outsourced Part">
+      <Label fx:id="screenLabel" layoutX="48.0" layoutY="51.0" text="Add Outsourced Part">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
          </font>
       </Label>
-      <RadioButton layoutX="116.0" layoutY="114.0" mnemonicParsing="false" text="In House" />
-      <RadioButton layoutX="237.0" layoutY="114.0" mnemonicParsing="false" text="Outsourced" />
-      <Label layoutX="117.0" layoutY="168.0" text="ID" />
-      <TextField layoutX="190.0" layoutY="163.0" />
-      <Label layoutX="117.0" layoutY="304.0" text="Price/Cost" />
-      <TextField layoutX="190.0" layoutY="299.0" />
-      <Label layoutX="117.0" layoutY="259.0" text="Inv" />
-      <TextField layoutX="190.0" layoutY="254.0" />
-      <Label layoutX="117.0" layoutY="214.0" text="Name" />
-      <TextField layoutX="190.0" layoutY="209.0" />
-      <Label layoutX="117.0" layoutY="385.0" text="Machine ID" />
-      <TextField layoutX="190.0" layoutY="380.0" />
-      <Label layoutX="117.0" layoutY="346.0" text="Max" />
-      <TextField layoutX="190.0" layoutY="341.0" prefHeight="27.0" prefWidth="69.0" />
-      <Label layoutX="286.0" layoutY="346.0" text="Min" />
-      <TextField layoutX="359.0" layoutY="341.0" prefHeight="27.0" prefWidth="69.0" />
-      <Button layoutX="370.0" layoutY="439.0" mnemonicParsing="false" text="Save" />
-      <Button layoutX="435.0" layoutY="439.0" mnemonicParsing="false" text="Cancel" />
+      <RadioButton fx:id="inhouseButton" layoutX="134.0" layoutY="114.0" mnemonicParsing="false" text="In House" />
+      <RadioButton fx:id="outsourcedButton" layoutX="255.0" layoutY="114.0" mnemonicParsing="false" text="Outsourced" />
+      <Label layoutX="135.0" layoutY="168.0" text="ID" />
+      <TextField fx:id="idField" layoutX="208.0" layoutY="163.0" />
+      <Label layoutX="135.0" layoutY="304.0" text="Price/Cost" />
+      <TextField fx:id="priceField" layoutX="208.0" layoutY="299.0" />
+      <Label layoutX="135.0" layoutY="259.0" text="Inv" />
+      <TextField fx:id="invField" layoutX="208.0" layoutY="254.0" />
+      <Label layoutX="135.0" layoutY="214.0" text="Name" />
+      <TextField fx:id="nameField" layoutX="208.0" layoutY="209.0" />
+      <Label layoutX="104.0" layoutY="385.0" text="Company Name" />
+      <TextField fx:id="companyField" layoutX="209.0" layoutY="380.0" />
+      <Label layoutX="135.0" layoutY="346.0" text="Max" />
+      <TextField fx:id="maxField" layoutX="208.0" layoutY="341.0" prefHeight="27.0" prefWidth="69.0" />
+      <Label layoutX="304.0" layoutY="346.0" text="Min" />
+      <TextField fx:id="minField" layoutX="377.0" layoutY="341.0" prefHeight="27.0" prefWidth="69.0" />
+      <Button fx:id="saveButton" layoutX="370.0" layoutY="439.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="cancelButton" layoutX="435.0" layoutY="439.0" mnemonicParsing="false" text="Cancel" />
    </children>
 </AnchorPane>
