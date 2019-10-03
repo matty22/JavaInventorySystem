@@ -30,7 +30,7 @@
       <TextField fx:id="maxField" layoutX="208.0" layoutY="341.0" prefHeight="27.0" prefWidth="69.0" />
       <Label layoutX="304.0" layoutY="346.0" text="Min" />
       <TextField fx:id="minField" layoutX="377.0" layoutY="341.0" prefHeight="27.0" prefWidth="69.0" />
-      <Button fx:id="saveButton" layoutX="370.0" layoutY="439.0" mnemonicParsing="false" text="Save" />
-      <Button fx:id="cancelButton" layoutX="435.0" layoutY="439.0" mnemonicParsing="false" text="Cancel" />
+      <Button fx:id="saveButton" layoutX="370.0" layoutY="439.0" mnemonicParsing="false" onAction="#saveButtonHandler" text="Save" />
+      <Button fx:id="cancelButton" layoutX="435.0" layoutY="439.0" mnemonicParsing="false" onAction="#cancelButtonHandler" text="Cancel" />
    </children>
 </AnchorPane>
