@@ -42,4 +42,26 @@ public class ProductController implements Initializable {
         // TODO
     }    
     
+    // Button Handlers
+    
+    public void searchButtonHandler() {
+        // do something
+    }
+    
+    public void addButtonHandler() {
+        // do something
+    }
+    
+    public void deleteButtonHandler() {
+        // do something
+    }
+    
+    public void saveButtonHandler() {
+        // do something
+    }
+    
+    public void cancelButtonHandler() {
+        // do something
+    }
+    
 }
