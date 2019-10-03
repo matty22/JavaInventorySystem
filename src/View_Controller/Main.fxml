@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="View_Controller.MainController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.MainController">
    <children>
-      <Button layoutX="865.0" layoutY="446.0" mnemonicParsing="false" prefWidth="100.0" text="Exit" />
+      <Button fx:id="exitButton" layoutX="865.0" layoutY="446.0" mnemonicParsing="false" prefWidth="100.0" text="Exit" />
       <Label layoutX="27.0" layoutY="32.0" text="Inventory Management System">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
@@ -22,12 +21,12 @@
          <children>
             <ButtonBar layoutX="216.0" layoutY="233.0" maxHeight="50.0" prefHeight="100.0" prefWidth="106.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Add" />
-                  <Button mnemonicParsing="false" text="Modify" />
-                  <Button alignment="TOP_CENTER" mnemonicParsing="false" text="Delete" />
+                <Button fx:id="addProductsButton" mnemonicParsing="false" text="Add" />
+                  <Button fx:id="modifyProductsButton" mnemonicParsing="false" text="Modify" />
+                  <Button fx:id="deleteProductsButton" alignment="TOP_CENTER" mnemonicParsing="false" text="Delete" />
               </buttons>
             </ButtonBar>
-            <TableView layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
+            <TableView fx:id="tableViewProducts" layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
               <columns>
                 <TableColumn prefWidth="112.0" text="Product ID" />
                 <TableColumn prefWidth="112.0" text="Product Name" />
@@ -40,20 +39,20 @@
                   <Font name="Arial Bold Italic" size="14.0" />
                </font>
             </Label>
-            <TextField layoutX="299.0" layoutY="19.0" />
-            <Button layoutX="226.0" layoutY="19.0" mnemonicParsing="false" text="Search" />
+            <TextField fx:id="searchProductsField" layoutX="299.0" layoutY="19.0" />
+            <Button fx:id="searchProductsButton" layoutX="226.0" layoutY="19.0" mnemonicParsing="false" text="Search" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="12.0" layoutY="101.0" prefHeight="297.0" prefWidth="480.0" style="-fx-border-color: #000000;">
          <children>
             <ButtonBar layoutX="216.0" layoutY="233.0" maxHeight="50.0" prefHeight="100.0" prefWidth="106.0">
                <buttons>
-                  <Button mnemonicParsing="false" text="Add" />
-                  <Button mnemonicParsing="false" text="Modify" />
-                  <Button alignment="TOP_CENTER" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="addPartsButton" mnemonicParsing="false" text="Add" />
+                  <Button fx:id="modifyPartsButton" mnemonicParsing="false" text="Modify" />
+                  <Button fx:id="deletePartsButton" alignment="TOP_CENTER" mnemonicParsing="false" text="Delete" />
                </buttons>
             </ButtonBar>
-            <TableView layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
+            <TableView fx:id="tableViewParts" layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
                <columns>
                   <TableColumn prefWidth="112.0" text="Product ID" />
                   <TableColumn prefWidth="112.0" text="Product Name" />
@@ -66,8 +65,8 @@
                   <Font name="Arial Bold Italic" size="14.0" />
                </font>
             </Label>
-            <TextField layoutX="299.0" layoutY="19.0" />
-            <Button layoutX="226.0" layoutY="19.0" mnemonicParsing="false" text="Search" />
+            <TextField fx:id="searchPartsField" layoutX="299.0" layoutY="19.0" />
+            <Button fx:id="searchPartsButton" layoutX="226.0" layoutY="19.0" mnemonicParsing="false" text="Search" />
          </children>
       </AnchorPane>
    </children>
