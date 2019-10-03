@@ -9,28 +9,28 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.InhousePartController">
    <children>
-      <Label layoutX="38.0" layoutY="41.0" text="Add/Modify Inhouse Part">
+      <RadioButton fx:id="inhouseButton" layoutX="106.0" layoutY="104.0" mnemonicParsing="false" text="In House" />
+      <RadioButton fx:id="outsourcedButton" layoutX="227.0" layoutY="104.0" mnemonicParsing="false" text="Outsourced" />
+      <Label layoutX="107.0" layoutY="158.0" text="ID" />
+      <TextField fx:id="idField" layoutX="180.0" layoutY="153.0" />
+      <Label layoutX="107.0" layoutY="294.0" text="Price/Cost" />
+      <TextField fx:id="priceField" layoutX="180.0" layoutY="289.0" />
+      <Label layoutX="107.0" layoutY="249.0" text="Inv" />
+      <TextField fx:id="invField" layoutX="180.0" layoutY="244.0" />
+      <Label layoutX="107.0" layoutY="204.0" text="Name" />
+      <TextField fx:id="nameField" layoutX="180.0" layoutY="199.0" />
+      <Label layoutX="107.0" layoutY="375.0" text="Machine ID" />
+      <TextField fx:id="machineID" layoutX="180.0" layoutY="370.0" />
+      <Label layoutX="107.0" layoutY="336.0" text="Max" />
+      <TextField fx:id="maxField" layoutX="180.0" layoutY="331.0" prefHeight="27.0" prefWidth="69.0" />
+      <Label layoutX="276.0" layoutY="336.0" text="Min" />
+      <TextField fx:id="minField" layoutX="349.0" layoutY="331.0" prefHeight="27.0" prefWidth="69.0" />
+      <Button fx:id="saveButton" layoutX="380.0" layoutY="449.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="cancelButton" layoutX="445.0" layoutY="449.0" mnemonicParsing="false" text="Cancel" />
+      <Label fx:id="screenLabel" layoutX="50.0" layoutY="44.0" text="Add Inhouse Part">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
          </font>
       </Label>
-      <RadioButton layoutX="106.0" layoutY="104.0" mnemonicParsing="false" text="In House" />
-      <RadioButton layoutX="227.0" layoutY="104.0" mnemonicParsing="false" text="Outsourced" />
-      <Label layoutX="107.0" layoutY="158.0" text="ID" />
-      <TextField layoutX="180.0" layoutY="153.0" />
-      <Label layoutX="107.0" layoutY="294.0" text="Price/Cost" />
-      <TextField layoutX="180.0" layoutY="289.0" />
-      <Label layoutX="107.0" layoutY="249.0" text="Inv" />
-      <TextField layoutX="180.0" layoutY="244.0" />
-      <Label layoutX="107.0" layoutY="204.0" text="Name" />
-      <TextField layoutX="180.0" layoutY="199.0" />
-      <Label layoutX="107.0" layoutY="375.0" text="Machine ID" />
-      <TextField layoutX="180.0" layoutY="370.0" />
-      <Label layoutX="107.0" layoutY="336.0" text="Max" />
-      <TextField layoutX="180.0" layoutY="331.0" prefHeight="27.0" prefWidth="69.0" />
-      <Label layoutX="276.0" layoutY="336.0" text="Min" />
-      <TextField layoutX="349.0" layoutY="331.0" prefHeight="27.0" prefWidth="69.0" />
-      <Button layoutX="380.0" layoutY="449.0" mnemonicParsing="false" text="Save" />
-      <Button layoutX="445.0" layoutY="449.0" mnemonicParsing="false" text="Cancel" />
    </children>
 </AnchorPane>
