@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.MainController">
    <children>
-      <Button fx:id="exitButton" layoutX="865.0" layoutY="446.0" mnemonicParsing="false" prefWidth="100.0" text="Exit" />
+      <Button fx:id="exitButton" layoutX="865.0" layoutY="446.0" mnemonicParsing="false" onAction="#exitButtonHandler" prefWidth="100.0" text="Exit" />
       <Label layoutX="27.0" layoutY="32.0" text="Inventory Management System">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
@@ -21,9 +21,9 @@
          <children>
             <ButtonBar layoutX="216.0" layoutY="233.0" maxHeight="50.0" prefHeight="100.0" prefWidth="106.0">
               <buttons>
-                <Button fx:id="addProductsButton" mnemonicParsing="false" text="Add" />
-                  <Button fx:id="modifyProductsButton" mnemonicParsing="false" text="Modify" />
-                  <Button fx:id="deleteProductsButton" alignment="TOP_CENTER" mnemonicParsing="false" text="Delete" />
+                <Button fx:id="addProductsButton" mnemonicParsing="false" onAction="#productsAddButtonHandler" text="Add" />
+                  <Button fx:id="modifyProductsButton" mnemonicParsing="false" onAction="#productsModifyButtonHandler" text="Modify" />
+                  <Button fx:id="deleteProductsButton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#productsDeleteButtonHandler" text="Delete" />
               </buttons>
             </ButtonBar>
             <TableView fx:id="tableViewProducts" layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
@@ -40,16 +40,16 @@
                </font>
             </Label>
             <TextField fx:id="searchProductsField" layoutX="299.0" layoutY="19.0" />
-            <Button fx:id="searchProductsButton" layoutX="226.0" layoutY="19.0" mnemonicParsing="false" text="Search" />
+            <Button fx:id="searchProductsButton" layoutX="226.0" layoutY="19.0" mnemonicParsing="false" onAction="#productsSearchButtonHandler" text="Search" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="12.0" layoutY="101.0" prefHeight="297.0" prefWidth="480.0" style="-fx-border-color: #000000;">
          <children>
             <ButtonBar layoutX="216.0" layoutY="233.0" maxHeight="50.0" prefHeight="100.0" prefWidth="106.0">
                <buttons>
-                  <Button fx:id="addPartsButton" mnemonicParsing="false" text="Add" />
-                  <Button fx:id="modifyPartsButton" mnemonicParsing="false" text="Modify" />
-                  <Button fx:id="deletePartsButton" alignment="TOP_CENTER" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="addPartsButton" mnemonicParsing="false" onAction="#partsAddButtonHandler" text="Add" />
+                  <Button fx:id="modifyPartsButton" mnemonicParsing="false" onAction="#partsModifyButtonHandler" text="Modify" />
+                  <Button fx:id="deletePartsButton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#partsDeleteButtonHandler" text="Delete" />
                </buttons>
             </ButtonBar>
             <TableView fx:id="tableViewParts" layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
@@ -66,7 +66,7 @@
                </font>
             </Label>
             <TextField fx:id="searchPartsField" layoutX="299.0" layoutY="19.0" />
-            <Button fx:id="searchPartsButton" layoutX="226.0" layoutY="19.0" mnemonicParsing="false" text="Search" />
+            <Button fx:id="searchPartsButton" layoutX="226.0" layoutY="19.0" mnemonicParsing="false" onAction="#partsSearchButtonHandler" text="Search" />
          </children>
       </AnchorPane>
    </children>
