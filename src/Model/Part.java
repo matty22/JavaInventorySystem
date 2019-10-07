@@ -1,7 +1,7 @@
 package Model;
 
 
-public class Part {
+public abstract class Part {
     private int partID;
     private String partName;
     private double partPrice;
@@ -11,7 +11,7 @@ public class Part {
     
     // Constructor
     public Part(int id, String name, double price, int stock, int min, int max) {
-        // do some constuctor-y stuff
+        
     }
     
     // Setters
