@@ -1,10 +1,13 @@
 package View_Controller;
 
+import Model.Part;
+import Model.Product;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -17,7 +20,11 @@ public class MainController implements Initializable {
     @FXML private Button modifyPartsButton;
     @FXML private Button deletePartsButton;
     @FXML private TextField searchPartsField;
-    @FXML private TableView tableViewParts;
+    @FXML private TableView<Part> tableViewParts;
+    @FXML private TableColumn<Part, Integer> partIdColumn;
+    @FXML private TableColumn<Part, String> partNameColumn;
+    @FXML private TableColumn<Part, Integer> partInventoryColumn;
+    @FXML private TableColumn<Part, Double> partPriceColumn;
     
     // FXML variables for products table block
     @FXML private Button searchProductsButton;
@@ -25,7 +32,11 @@ public class MainController implements Initializable {
     @FXML private Button modifyProductsButton;
     @FXML private Button deleteProductsButton;
     @FXML private TextField searchProductsField;
-    @FXML private TableView tableViewProducts;
+    @FXML private TableView<Product> tableViewProducts;
+    @FXML private TableColumn<Product, Integer> productIdColumn;
+    @FXML private TableColumn<Product, String> productNameColumn;
+    @FXML private TableColumn<Product, Integer> productInventoryColumn;
+    @FXML private TableColumn<Product, Double> productPriceColumn;
     
     // FXML variables for screen
     @FXML private Button exitButton;
