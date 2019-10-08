@@ -1,13 +1,20 @@
 package View_Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class ProductController implements Initializable {
 
@@ -60,8 +67,12 @@ public class ProductController implements Initializable {
         // do something
     }
     
-    public void cancelButtonHandler() {
-        // do something
+    public void cancelButtonHandler(ActionEvent event) throws IOException {
+        Parent cancelProductParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Scene cancelProductScene = new Scene(cancelProductParent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(cancelProductScene);
+        window.show();
     }
     
 }
