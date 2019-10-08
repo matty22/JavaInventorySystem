@@ -14,6 +14,11 @@ public abstract class Part {
         
     }
     
+    // Constructor for table view
+    public Part(int id, String name, int stock, double price) {
+    
+    }
+    
     // Setters
     public void setId(int id) {
         this.partID = id;

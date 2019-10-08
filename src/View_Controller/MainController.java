@@ -1,20 +1,29 @@
 package View_Controller;
 
-import Model.Part;
+import Model.InhousePart;
 import Model.Product;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 
 public class MainController implements Initializable {
+    
 
     // FXML variables for parts table block
     @FXML private Button searchPartsButton;
@@ -22,11 +31,11 @@ public class MainController implements Initializable {
     @FXML private Button modifyPartsButton;
     @FXML private Button deletePartsButton;
     @FXML private TextField searchPartsField;
-    @FXML private TableView<Part> tableViewParts;
-    @FXML private TableColumn<Part, Integer> partIdColumn;
-    @FXML private TableColumn<Part, String> partNameColumn;
-    @FXML private TableColumn<Part, Integer> partInventoryColumn;
-    @FXML private TableColumn<Part, Double> partPriceColumn;
+    @FXML private TableView<InhousePart> partTableView;
+    @FXML private TableColumn<InhousePart, Integer> partIdColumn;
+    @FXML private TableColumn<InhousePart, String> partNameColumn;
+    @FXML private TableColumn<InhousePart, Integer> partInventoryColumn;
+    @FXML private TableColumn<InhousePart, Double> partPriceColumn;
     
     // FXML variables for products table block
     @FXML private Button searchProductsButton;
@@ -44,13 +53,13 @@ public class MainController implements Initializable {
     @FXML private Button exitButton;
     
     
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+       
+    }   
+    
+
     
     
     // Main screen parts panel button handlers
@@ -58,8 +67,12 @@ public class MainController implements Initializable {
         // do something
     }
     
-    public void partsAddButtonHandler() {
-        // do something
+    public void partsAddButtonHandler(ActionEvent event) throws IOException {
+        Parent inhousePartParent = FXMLLoader.load(getClass().getResource("InhousePart.fxml"));
+        Scene inhousePartScene = new Scene(inhousePartParent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(inhousePartScene);
+        window.show();
     }
     
     public void partsModifyButtonHandler() {
