@@ -1,12 +1,11 @@
 package View_Controller;
 
 import Model.InhousePart;
+import Model.ListOfInhouseParts;
 import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,15 +50,28 @@ public class MainController implements Initializable {
     
     // FXML variables for screen
     @FXML private Button exitButton;
+    static boolean entered;
     
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
+       partIdColumn.setCellValueFactory(new PropertyValueFactory<>("machineId"));
+       partNameColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
+       partInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
+       partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
+       
+       ListOfInhouseParts.parts.add(new InhousePart(1, "Screw", 1.20, 44, 0, 100));
+       ListOfInhouseParts.parts.add(new InhousePart(2, "Nail", 0.80, 66, 0, 100));
+       ListOfInhouseParts.parts.add(new InhousePart(3, "Washer", 0.15, 12, 0, 100));
+
+                 
+       partTableView.setItems(ListOfInhouseParts.parts);
     }   
     
-
+    
+    
     
     
     // Main screen parts panel button handlers

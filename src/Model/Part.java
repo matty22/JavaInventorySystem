@@ -1,76 +1,111 @@
 package Model;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 
 public abstract class Part {
-    private int partID;
-    private String partName;
-    private double partPrice;
-    private int partStock;
-    private int partMin;
-    private int partMax;
+    private final SimpleIntegerProperty partID = new SimpleIntegerProperty(0);
+    private SimpleStringProperty partName = new SimpleStringProperty("");
+    private SimpleDoubleProperty partPrice = new SimpleDoubleProperty(0.0);
+    private SimpleIntegerProperty partStock = new SimpleIntegerProperty(0);
+    private SimpleIntegerProperty partMin = new SimpleIntegerProperty(0);
+    private SimpleIntegerProperty partMax = new SimpleIntegerProperty(0);
     
     // Constructor
     public Part(int id, String name, double price, int stock, int min, int max) {
-        
+        setPartID(id);
+        setPartName(name);
+        setPartPrice(price);
+        setPartStock(stock);
+        setPartMin(min);
+        setPartMax(max);
     }
     
-    // Constructor for table view
-    public Part(int id, String name, int stock, double price) {
-    
+
+    /**
+     * @return the partID
+     */
+    public Integer getPartID() {
+        return partID.get();
     }
-    
-    // Setters
-    public void setId(int id) {
-        this.partID = id;
+
+    /**
+     * @param partID the partID to set
+     */
+    public void setPartID(int partID) {
+        this.partID.set(partID);
     }
-    
-    public void setName(String name) {
-        this.partName = name;
+
+    /**
+     * @return the partName
+     */
+    public String getPartName() {
+        return partName.get();
     }
-    
-    public void setPrice(double price) {
-        this.partPrice = price;
+
+    /**
+     * @param partName the partName to set
+     */
+    public void setPartName(String partName) {
+        this.partName.set(partName);
     }
-    
-    public void setStock(int stock) {
-        this.partStock = stock;
+
+    /**
+     * @return the partPrice
+     */
+    public double getPartPrice() {
+        return partPrice.get();
     }
-    
-    public void setMin(int min) {
-        this.partMin = min;
+
+    /**
+     * @param partPrice the partPrice to set
+     */
+    public void setPartPrice(double partPrice) {
+        this.partPrice.set(partPrice);
     }
-    
-    public void setMax(int max) {
-        this.partMax = max;
+
+    /**
+     * @return the partStock
+     */
+    public int getPartStock() {
+        return partStock.get();
     }
-    
-    public void setPrice(int max) {
-        this.partPrice = max;
+
+    /**
+     * @param partStock the partStock to set
+     */
+    public void setPartStock(int partStock) {
+        this.partStock.set(partStock);
     }
-    
-    // Getters
-    public int getId() {
-        return this.partID;
+
+    /**
+     * @return the partMin
+     */
+    public int getPartMin() {
+        return partMin.get();
     }
-    
-    public String getName() {
-        return this.partName;
+
+    /**
+     * @param partMin the partMin to set
+     */
+    public void setPartMin(int partMin) {
+        this.partMin.set(partMin);
     }
-    
-    public double getPrice() {
-        return this.partPrice;
+
+    /**
+     * @return the partMax
+     */
+    public int getPartMax() {
+        return partMax.get();
     }
-    
-    public int getStock() {
-        return this.partStock;
+
+    /**
+     * @param partMax the partMax to set
+     */
+    public void setPartMax(int partMax) {
+        this.partMax.set(partMax);
     }
-    
-    public int getMin() {
-        return this.partMin;
-    }
-    
-    public int getMax() {
-        return this.partMax;
-    }
-    
+      
 }
