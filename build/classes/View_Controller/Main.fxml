@@ -52,7 +52,7 @@
                   <Button fx:id="deletePartsButton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#partsDeleteButtonHandler" text="Delete" />
                </buttons>
             </ButtonBar>
-            <TableView fx:id="tableViewParts" layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
+            <TableView fx:id="partTableView" layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
                <columns>
                   <TableColumn fx:id="partIdColumn" prefWidth="112.0" text="Product ID" />
                   <TableColumn fx:id="partNameColumn" prefWidth="112.0" text="Product Name" />
