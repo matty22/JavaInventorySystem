@@ -26,7 +26,7 @@
                   <Button fx:id="deleteProductsButton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#productsDeleteButtonHandler" text="Delete" />
               </buttons>
             </ButtonBar>
-            <TableView fx:id="tableViewProducts" layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
+            <TableView fx:id="productTableView" layoutX="14.0" layoutY="76.0" prefHeight="157.0" prefWidth="450.0">
               <columns>
                 <TableColumn fx:id="productIdColumn" prefWidth="112.0" text="Product ID" />
                 <TableColumn fx:id="productNameColumn" prefWidth="112.0" text="Product Name" />

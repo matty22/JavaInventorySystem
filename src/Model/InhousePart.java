@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.event.ActionEvent;
+
 
 public class InhousePart extends Part {
     private int machineId;
@@ -28,7 +30,6 @@ public class InhousePart extends Part {
     public void setMachineId(int machineId) {
         this.machineId = machineId;
     }
-    
     
     
 }
