@@ -3,10 +3,16 @@ package Model;
 
 public class OutsourcedPart extends Part {
     
+    private int id;
+    private String name;
+    private int stock;
+    private double price;
+    private int min;
+    private int max;
     private String companyName;
     
     // Constructor
-    public OutsourcedPart(int id, String name, double price, int stock, int min, int max) {
+    public OutsourcedPart(int id, String name, double price, int stock, int min, int max, String company) {
         super(id, name, price, stock, min, max);
     }
 

@@ -42,7 +42,7 @@ public class MainController implements Initializable {
     @FXML private Button modifyProductsButton;
     @FXML private Button deleteProductsButton;
     @FXML private TextField searchProductsField;
-    @FXML private TableView<Product> tableViewProducts;
+    @FXML private TableView<Product> productTableView;
     @FXML private TableColumn<Product, Integer> productIdColumn;
     @FXML private TableColumn<Product, String> productNameColumn;
     @FXML private TableColumn<Product, Integer> productInventoryColumn;

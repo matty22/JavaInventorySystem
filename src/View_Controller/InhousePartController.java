@@ -1,5 +1,6 @@
 package View_Controller;
 
+import Model.InhousePart;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,12 +43,18 @@ public class InhousePartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        inhouseButton.setSelected(true);
     }    
     
     // Button handlers
-    public void saveButtonHandler() {
-        // do something
+    public void saveButtonHandler(ActionEvent event) {
+        InhousePart newPart = new InhousePart(Integer.parseInt(idField.getText()), 
+                                           nameField.getText(),
+                                           Double.parseDouble(priceField.getText()),
+                                           Integer.parseInt(invField.getText()),
+                                           Integer.parseInt(minField.getText()),
+                                           Integer.parseInt(maxField.getText()));    
+        // TODO: igure out how to add it to the list of parts
     }
     
     public void cancelButtonHandler(ActionEvent event) throws IOException {
