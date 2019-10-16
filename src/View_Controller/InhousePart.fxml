@@ -14,7 +14,7 @@
          <toggleGroup>
             <ToggleGroup fx:id="partChooser" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="outsourcedButton" layoutX="227.0" layoutY="104.0" mnemonicParsing="false" text="Outsourced" toggleGroup="$partChooser" />
+      <RadioButton fx:id="outsourcedButton" layoutX="227.0" layoutY="104.0" mnemonicParsing="false" onAction="#swapOutsourcedButtonHandler" text="Outsourced" toggleGroup="$partChooser" />
       <Label layoutX="107.0" layoutY="158.0" text="ID" />
       <TextField fx:id="idField" layoutX="180.0" layoutY="153.0" />
       <Label layoutX="107.0" layoutY="294.0" text="Price/Cost" />

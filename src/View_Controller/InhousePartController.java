@@ -1,6 +1,7 @@
 package View_Controller;
 
 import Model.InhousePart;
+import Model.Inventory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,19 +48,33 @@ public class InhousePartController implements Initializable {
     }    
     
     // Button handlers
-    public void saveButtonHandler(ActionEvent event) {
+    public void saveButtonHandler(ActionEvent event) throws IOException {
         InhousePart newPart = new InhousePart(Integer.parseInt(idField.getText()), 
                                            nameField.getText(),
                                            Double.parseDouble(priceField.getText()),
                                            Integer.parseInt(invField.getText()),
                                            Integer.parseInt(minField.getText()),
-                                           Integer.parseInt(maxField.getText()));    
-        // TODO: igure out how to add it to the list of parts
+                                           Integer.parseInt(maxField.getText())); 
+        Inventory.addPart(newPart);
+        
+        Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Scene mainScene = new Scene(parent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(mainScene);
+        window.show();
     }
     
     public void cancelButtonHandler(ActionEvent event) throws IOException {
         Parent addPartParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene addPartScene = new Scene(addPartParent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(addPartScene);
+        window.show();
+    }
+    
+    public void swapOutsourcedButtonHandler(ActionEvent event) throws IOException {
+        Parent addOutsourcedParent = FXMLLoader.load(getClass().getResource("OutsourcedPart.fxml"));
+        Scene addPartScene = new Scene(addOutsourcedParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(addPartScene);
         window.show();
