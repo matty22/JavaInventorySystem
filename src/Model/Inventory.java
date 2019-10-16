@@ -33,7 +33,7 @@ public class Inventory {
     public static Part lookupPart(String partName) {
         boolean found = false;
         for (Part part : allParts) {
-            if (part.getPartName().contains(partName)) {
+            if (part.getPartName().contains(partName) || part.getPartID().toString().equals(partName)) {
                 return part;
             }
         }
