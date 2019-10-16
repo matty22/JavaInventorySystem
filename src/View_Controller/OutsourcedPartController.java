@@ -42,7 +42,7 @@ public class OutsourcedPartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        outsourcedButton.setSelected(true);
     }    
     
     // Button handlers
@@ -53,6 +53,14 @@ public class OutsourcedPartController implements Initializable {
     public void cancelButtonHandler(ActionEvent event) throws IOException {
         Parent addPartParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene addPartScene = new Scene(addPartParent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(addPartScene);
+        window.show();
+    }
+    
+    public void swapOutsourcedButtonHandler(ActionEvent event) throws IOException {
+        Parent addOutsourcedParent = FXMLLoader.load(getClass().getResource("InhousePart.fxml"));
+        Scene addPartScene = new Scene(addOutsourcedParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(addPartScene);
         window.show();

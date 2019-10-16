@@ -1,7 +1,9 @@
 package View_Controller;
 
 import Model.InhousePart;
+import Model.Inventory;
 import Model.ListOfInhouseParts;
+import Model.Part;
 import Model.Product;
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +24,6 @@ import javafx.stage.Stage;
 
 
 public class MainController implements Initializable {
-    
 
     // FXML variables for parts table block
     @FXML private Button searchPartsButton;
@@ -30,11 +31,11 @@ public class MainController implements Initializable {
     @FXML private Button modifyPartsButton;
     @FXML private Button deletePartsButton;
     @FXML private TextField searchPartsField;
-    @FXML private TableView<InhousePart> partTableView;
-    @FXML private TableColumn<InhousePart, Integer> partIdColumn;
-    @FXML private TableColumn<InhousePart, String> partNameColumn;
-    @FXML private TableColumn<InhousePart, Integer> partInventoryColumn;
-    @FXML private TableColumn<InhousePart, Double> partPriceColumn;
+    @FXML private TableView<Part> partTableView;
+    @FXML private TableColumn<Part, Integer> partIdColumn;
+    @FXML private TableColumn<Part, String> partNameColumn;
+    @FXML private TableColumn<Part, Integer> partInventoryColumn;
+    @FXML private TableColumn<Part, Double> partPriceColumn;
     
     // FXML variables for products table block
     @FXML private Button searchProductsButton;
@@ -51,6 +52,7 @@ public class MainController implements Initializable {
     // FXML variables for screen
     @FXML private Button exitButton;
     static boolean entered;
+    static boolean initialized = false;
     
     
     
@@ -62,12 +64,14 @@ public class MainController implements Initializable {
        partInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
        partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
        
-       ListOfInhouseParts.parts.add(new InhousePart(1, "Screw", 1.20, 44, 0, 100));
-       ListOfInhouseParts.parts.add(new InhousePart(2, "Nail", 0.80, 66, 0, 100));
-       ListOfInhouseParts.parts.add(new InhousePart(3, "Washer", 0.15, 12, 0, 100));
-
-                 
-       partTableView.setItems(ListOfInhouseParts.parts);
+       // Set up dummy part data upon application first loading
+       if(!initialized) {
+        Inventory.addPart(new InhousePart(1, "Screw", 1.20, 44, 0, 100));
+        Inventory.addPart(new InhousePart(2, "Nail", 0.80, 66, 0, 100));
+        Inventory.addPart(new InhousePart(3, "Washer", 0.15, 12, 0, 100));
+        initialized = true;
+       }
+       partTableView.setItems(Inventory.getAllParts());
     }   
     
     
@@ -75,8 +79,9 @@ public class MainController implements Initializable {
     
     
     // Main screen parts panel button handlers
-    public void partsSearchButtonHandler() {
-        // do something
+    public void partsSearchButtonHandler(ActionEvent event) {
+        Part foundPart = Inventory.lookupPart(searchPartsField.getText());
+        partTableView.getSelectionModel().select(foundPart);
     }
     
     public void partsAddButtonHandler(ActionEvent event) throws IOException {
