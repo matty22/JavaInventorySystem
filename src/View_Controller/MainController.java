@@ -2,7 +2,6 @@ package View_Controller;
 
 import Model.InhousePart;
 import Model.Inventory;
-import Model.ListOfInhouseParts;
 import Model.Part;
 import Model.Product;
 import java.io.IOException;
@@ -92,8 +91,21 @@ public class MainController implements Initializable {
         window.show();
     }
     
-    public void partsModifyButtonHandler() {
-        // do something
+    public void partsModifyButtonHandler(ActionEvent event) throws IOException {
+        Parent root;
+        Stage stage = (Stage) modifyPartsButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("InhousePart.fxml"));
+        
+        root = loader.load();
+        InhousePartController controller = loader.getController();
+        Part part = partTableView.getSelectionModel().getSelectedItem();
+        if(part != null) {
+            controller.passPartToModify(part);
+        }
+        
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     public void partsDeleteButtonHandler() {

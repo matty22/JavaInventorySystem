@@ -2,9 +2,11 @@ package View_Controller;
 
 import Model.InhousePart;
 import Model.Inventory;
+import Model.Part;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +40,7 @@ public class InhousePartController implements Initializable {
     
     // FXML variables for screen label
     @FXML private Label screenLabel;
+    Part currentPart;
     
     /**
      * Initializes the controller class.
@@ -49,13 +52,28 @@ public class InhousePartController implements Initializable {
     
     // Button handlers
     public void saveButtonHandler(ActionEvent event) throws IOException {
-        InhousePart newPart = new InhousePart(Integer.parseInt(idField.getText()), 
+        ObservableList<Part> partList = Inventory.getAllParts();
+        Part newPart = new Part(Integer.parseInt(idField.getText()), 
                                            nameField.getText(),
                                            Double.parseDouble(priceField.getText()),
                                            Integer.parseInt(invField.getText()),
                                            Integer.parseInt(minField.getText()),
-                                           Integer.parseInt(maxField.getText())); 
-        Inventory.addPart(newPart);
+                                           Integer.parseInt(maxField.getText())) {}; 
+        boolean newPartAlreadyExists = false;
+        for(Part element : partList) {
+            if (element.getPartID() == Integer.parseInt(idField.getText())) {
+                newPartAlreadyExists = true;
+                
+            }
+        }
+        
+        if (newPartAlreadyExists) {
+            Inventory.updatePart(partList.indexOf(newPart), newPart);
+        } else {
+            Inventory.addPart(newPart);
+        }
+       
+        
         
         Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene mainScene = new Scene(parent);
@@ -79,5 +97,25 @@ public class InhousePartController implements Initializable {
         window.setScene(addPartScene);
         window.show();
     }
+    
+    
+    // Other methods
+    public void passPartToModify(Part part) {
+    this.currentPart = part;
+    idField.setText(part.getPartID().toString());
+    nameField.setText(part.getPartName());
+    priceField.setText(String.valueOf(part.getPartPrice()));
+    invField.setText(String.valueOf(part.getPartStock()));
+    maxField.setText(String.valueOf(part.getPartMax()));
+    minField.setText(String.valueOf(part.getPartMin()));
+    }
+    
+//    public void modifyPart(Part editedPart) {
+//        ObservableList<Part> partList = Inventory.getAllParts();
+//        if(partList.indexOf(editedPart) != -1) {
+//            int index = partList.indexOf(editedPart);
+//            Inventory.updatePart(index, editedPart);
+//        }
+//    }
     
 }
