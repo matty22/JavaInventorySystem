@@ -21,11 +21,7 @@ public class Inventory {
         allProducts.add(newProduct);
     }
     
-    // Commented until I have ObservableLists setup
-//    public Part lookupPart(int partId) {
-//        
-//    }
-//    
+    // Commented until I have ObservableLists setup    
 //    public Product lookupProduct(int productId) {
 //    
 //    }
@@ -44,8 +40,10 @@ public class Inventory {
 //    
 //    }
     
-    public void updatePart(int index, Part selectedPart) {
-    
+    // Fully implement this method next
+    public static void updatePart(int index, Part selectedPart) {
+        System.out.println(index);
+        System.out.println(selectedPart);
     }
     
     public void updateProduct(int index, Product selectedProduct) {
