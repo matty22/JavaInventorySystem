@@ -59,6 +59,7 @@ public class InhousePartController implements Initializable {
                                            Integer.parseInt(invField.getText()),
                                            Integer.parseInt(minField.getText()),
                                            Integer.parseInt(maxField.getText())) {}; 
+        //Below needs a refactor
         boolean newPartAlreadyExists = false;
         for(Part element : partList) {
             if (element.getPartID() == Integer.parseInt(idField.getText())) {
@@ -68,12 +69,12 @@ public class InhousePartController implements Initializable {
         }
         
         if (newPartAlreadyExists) {
-            Inventory.updatePart(partList.indexOf(newPart), newPart);
+            Inventory.updatePart(newPart);
         } else {
             Inventory.addPart(newPart);
         }
        
-        
+        // end refactor
         
         Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene mainScene = new Scene(parent);

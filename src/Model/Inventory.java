@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -41,9 +42,17 @@ public class Inventory {
 //    }
     
     // Fully implement this method next
-    public static void updatePart(int index, Part selectedPart) {
-        System.out.println(index);
-        System.out.println(selectedPart);
+    public static void updatePart(Part modifiedPart) {
+        for(Part part : allParts) {
+            if(Objects.equals(part.getPartID(), modifiedPart.getPartID())) {
+                allParts.remove(part);
+                System.out.print("Removed: ");
+                System.out.println(part);
+                allParts.add(modifiedPart);
+                System.out.print("Added: ");
+                System.out.println(modifiedPart);
+            }
+        }
     }
     
     public void updateProduct(int index, Product selectedProduct) {
