@@ -19,10 +19,10 @@
       </Label>
       <TableView fx:id="topTable" layoutX="528.0" layoutY="74.0" prefHeight="143.0" prefWidth="439.0">
         <columns>
-          <TableColumn prefWidth="110.0" text="Part ID" />
-          <TableColumn prefWidth="110.0" text="Part Name" />
-            <TableColumn prefWidth="110.0" text="Inventory Level" />
-            <TableColumn prefWidth="110.0" text="Price per unit" />
+          <TableColumn fx:id="partIdColumn" prefWidth="110.0" text="Part ID" />
+          <TableColumn fx:id="partNameColumn" prefWidth="110.0" text="Part Name" />
+            <TableColumn fx:id="partInventoryColumn" prefWidth="110.0" text="Inventory Level" />
+            <TableColumn fx:id="partPriceColumn" prefWidth="110.0" text="Price per unit" />
         </columns>
       </TableView>
       <TableView fx:id="bottomTable" layoutX="528.0" layoutY="267.0" prefHeight="143.0" prefWidth="439.0">

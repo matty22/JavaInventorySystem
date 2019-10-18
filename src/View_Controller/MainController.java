@@ -7,6 +7,7 @@ import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,16 +53,24 @@ public class MainController implements Initializable {
     @FXML private Button exitButton;
     static boolean entered;
     static boolean initialized = false;
+    static ObservableList<Part> dummyParts = Inventory.getAllParts();
     
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
+        // Bind part table columns
        partIdColumn.setCellValueFactory(new PropertyValueFactory<>("partID"));
        partNameColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
        partInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
        partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
+       
+       // Bind product table columns
+       productIdColumn.setCellValueFactory(new PropertyValueFactory<>("productID"));
+       productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
+       productInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("productStock"));
+       productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
        
        // Set up dummy part data upon application first loading
        if(!initialized) {
@@ -71,10 +80,8 @@ public class MainController implements Initializable {
         initialized = true;
        }
        partTableView.setItems(Inventory.getAllParts());
+       productTableView.setItems(Inventory.getAllProducts());
     }   
-    
-    
-    
     
     
     // Main screen parts panel button handlers
@@ -109,17 +116,23 @@ public class MainController implements Initializable {
     }
     
     public void partsDeleteButtonHandler() {
-        // do something
+        Part partToDelete = partTableView.getSelectionModel().getSelectedItem();
+        Inventory.deletePart(partToDelete);
     }
     
     
     // Main screen products panel button handlers
     public void productsSearchButtonHandler() {
-        // do something
+        Product foundProduct = Inventory.lookupProduct(searchProductsField.getText());
+        productTableView.getSelectionModel().select(foundProduct);
     }
     
-    public void productsAddButtonHandler() {
-        // do something
+    public void productsAddButtonHandler(ActionEvent event) throws IOException {
+        Parent addProductParent = FXMLLoader.load(getClass().getResource("Product.fxml"));
+        Scene inhousePartScene = new Scene(addProductParent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(inhousePartScene);
+        window.show();
     }
     
     public void productsModifyButtonHandler() {
