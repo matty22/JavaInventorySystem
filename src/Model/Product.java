@@ -1,74 +1,83 @@
 package Model;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 
 
 public class Product {
     private ObservableList<Part> associatedParts;
-    private int productID;
-    private String productName;
-    private double productPrice;
-    private int productStock;
-    private int productMin;
-    private int productMax;
+    private final SimpleIntegerProperty productID = new SimpleIntegerProperty(0);
+    private SimpleStringProperty productName = new SimpleStringProperty("");
+    private SimpleDoubleProperty productPrice = new SimpleDoubleProperty(0.0);
+    private SimpleIntegerProperty productStock = new SimpleIntegerProperty(0);
+    private SimpleIntegerProperty productMin = new SimpleIntegerProperty(0);
+    private SimpleIntegerProperty productMax = new SimpleIntegerProperty(0);
     
     // Constructor
-    public Product(int id, String name, double price, int stock, int min, int max) {
-    
+    public Product(int id, String name, double price, int stock, int min, int max, ObservableList<Part> associatedParts) {
+        setProductId(id);
+        setProductName(name);
+        setProductPrice(price);
+        setProductStock(stock);
+        setProductMin(min);
+        setProductMax(max);
+        setAssociatedParts(associatedParts);
     }
     
     // Setters
-    public void setId(int id) {
-        this.productID = id;
+    public void setProductId(int id) {
+        this.productID.set(id);
     }
     
-    public void setName(String name) {
-        this.productName = name;
+    public void setProductName(String name) {
+        this.productName.set(name);
     }
     
-    public void setPrice(double price) {
-        this.productPrice = price;
+    public void setProductPrice(double price) {
+        this.productPrice.set(price);
     }
     
-    public void setStock(int stock) {
-        this.productStock = stock;
+    public void setProductStock(int stock) {
+        this.productStock.set(stock);
     }
     
-    public void setMin(int min) {
-        this.productMin = min;
+    public void setProductMin(int min) {
+        this.productMin.set(min);
     }
     
-    public void setMax(int max) {
-        this.productMax = max;
+    public void setProductMax(int max) {
+        this.productMax.set(max);
     }
     
-    public void setPrice(int max) {
-        this.productPrice = max;
+    public void setAssociatedParts(ObservableList<Part> partList) {
+        this.associatedParts = partList;
     }
     
     // Getters
-    public int getId() {
-        return this.productID;
+    public int getProductId() {
+        return productID.get();
     }
     
-    public String getName() {
-        return this.productName;
+    public String getProductName() {
+        return productName.get();
     }
     
-    public double getPrice() {
-        return this.productPrice;
+    public double getProductPrice() {
+        return productPrice.get();
     }
     
-    public int getStock() {
-        return this.productStock;
+    public int getProductStock() {
+        return productStock.get();
     }
     
-    public int getMin() {
-        return this.productMin;
+    public int getProductMin() {
+        return productMin.get();
     }
     
-    public int getMax() {
-        return this.productMax;
+    public int getProductMax() {
+        return productMax.get();
     }
     
     // Deal with parts

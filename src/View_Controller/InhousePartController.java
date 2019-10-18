@@ -111,12 +111,4 @@ public class InhousePartController implements Initializable {
     minField.setText(String.valueOf(part.getPartMin()));
     }
     
-//    public void modifyPart(Part editedPart) {
-//        ObservableList<Part> partList = Inventory.getAllParts();
-//        if(partList.indexOf(editedPart) != -1) {
-//            int index = partList.indexOf(editedPart);
-//            Inventory.updatePart(index, editedPart);
-//        }
-//    }
-    
 }
