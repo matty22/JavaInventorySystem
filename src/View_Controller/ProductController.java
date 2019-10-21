@@ -4,11 +4,9 @@ import Model.InhousePart;
 import Model.Inventory;
 import Model.Part;
 import Model.Product;
-import static View_Controller.MainController.initialized;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,8 +67,6 @@ public class ProductController implements Initializable {
         
         // Add parts to top table
         // Set up dummy part data upon application first loading
-        ObservableList<Part> blankList = null;
-        topTable.setItems(blankList);
         topTable.setItems(Inventory.getAllParts());
     }    
     

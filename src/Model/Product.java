@@ -9,11 +9,11 @@ import javafx.collections.ObservableList;
 public class Product {
     private ObservableList<Part> associatedParts;
     private final SimpleIntegerProperty productID = new SimpleIntegerProperty(0);
-    private SimpleStringProperty productName = new SimpleStringProperty("");
-    private SimpleDoubleProperty productPrice = new SimpleDoubleProperty(0.0);
-    private SimpleIntegerProperty productStock = new SimpleIntegerProperty(0);
-    private SimpleIntegerProperty productMin = new SimpleIntegerProperty(0);
-    private SimpleIntegerProperty productMax = new SimpleIntegerProperty(0);
+    private final SimpleStringProperty productName = new SimpleStringProperty("");
+    private final SimpleDoubleProperty productPrice = new SimpleDoubleProperty(0.0);
+    private final SimpleIntegerProperty productStock = new SimpleIntegerProperty(0);
+    private final SimpleIntegerProperty productMin = new SimpleIntegerProperty(0);
+    private final SimpleIntegerProperty productMax = new SimpleIntegerProperty(0);
     
     // Constructor
     public Product(int id, String name, double price, int stock, int min, int max, ObservableList<Part> associatedParts) {

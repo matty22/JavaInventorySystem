@@ -48,7 +48,7 @@ public class Inventory {
         }
     }
     
-    public void updateProduct(int index, Product selectedProduct) {
+    public static void updateProduct(int index, Product selectedProduct) {
     
     }
     
@@ -56,8 +56,8 @@ public class Inventory {
         allParts.remove(selectedPart);
     }
     
-    public void deleteProduct(Product selectedProduct) {
-    
+    public static void deleteProduct(Product selectedProduct) {
+        allProducts.remove(selectedProduct);
     }
     
     public static ObservableList<Part> getAllParts() {

@@ -140,7 +140,8 @@ public class MainController implements Initializable {
     }
     
     public void productsDeleteButtonHandler() {
-        // do something
+        Product productToDelete = productTableView.getSelectionModel().getSelectedItem();
+        Inventory.deleteProduct(productToDelete);
     }
     
     // Exit button handler
