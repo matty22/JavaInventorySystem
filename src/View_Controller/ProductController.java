@@ -7,6 +7,7 @@ import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,6 +54,7 @@ public class ProductController implements Initializable {
     @FXML private Button deleteButton;
     @FXML private Button cancelButton;
     @FXML private Button saveButton;
+    Product currentProduct;
     
     /**
      * Initializes the controller class.
@@ -85,6 +87,7 @@ public class ProductController implements Initializable {
     }
     
     public void saveButtonHandler(ActionEvent event) throws IOException {
+        ObservableList<Product> productList = Inventory.getAllProducts();
         Product newProduct = new Product(Integer.parseInt(idField.getText()), 
                                            nameField.getText(),
                                            Double.parseDouble(priceField.getText()),
@@ -93,7 +96,22 @@ public class ProductController implements Initializable {
                                            Integer.parseInt(maxField.getText()),
                                            bottomTable.getItems()); 
         
-        Inventory.addProduct(newProduct);
+        boolean newProductAlreadyExists = false;
+        for(Product element : productList) {
+            if (element.getProductId() == Integer.parseInt(idField.getText())) {
+                newProductAlreadyExists = true;
+                
+            }
+        }
+        
+        if (newProductAlreadyExists) {
+            Inventory.updateProduct(newProduct);
+        } else {
+            Inventory.addProduct(newProduct);
+        }
+        
+        
+        //Inventory.addProduct(newProduct);
         Parent cancelProductParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene cancelProductScene = new Scene(cancelProductParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -107,6 +125,16 @@ public class ProductController implements Initializable {
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(cancelProductScene);
         window.show();
+    }
+    
+    public void passProductToModify(Product product) {
+    this.currentProduct = product;
+    idField.setText(product.getProductId().toString());
+    nameField.setText(product.getProductName());
+    priceField.setText(String.valueOf(product.getProductPrice()));
+    invField.setText(String.valueOf(product.getProductStock()));
+    maxField.setText(String.valueOf(product.getProductMax()));
+    minField.setText(String.valueOf(product.getProductMin()));
     }
     
 }

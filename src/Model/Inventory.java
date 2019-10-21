@@ -48,8 +48,13 @@ public class Inventory {
         }
     }
     
-    public static void updateProduct(int index, Product selectedProduct) {
-    
+    public static void updateProduct(Product modifiedProduct) {
+        for(Product product : allProducts) {
+            if(Objects.equals(product.getProductId(), modifiedProduct.getProductId())) {
+                allProducts.remove(product);
+                allProducts.add(modifiedProduct);
+            }
+        }
     }
     
     public static void deletePart(Part selectedPart) {

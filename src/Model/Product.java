@@ -56,7 +56,7 @@ public class Product {
     }
     
     // Getters
-    public int getProductId() {
+    public Integer getProductId() {
         return productID.get();
     }
     

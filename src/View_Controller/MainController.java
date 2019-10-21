@@ -115,18 +115,20 @@ public class MainController implements Initializable {
         stage.show();
     }
     
+    // Handles part delete button click
     public void partsDeleteButtonHandler() {
         Part partToDelete = partTableView.getSelectionModel().getSelectedItem();
         Inventory.deletePart(partToDelete);
     }
     
     
-    // Main screen products panel button handlers
+    // Handles product search button click
     public void productsSearchButtonHandler() {
         Product foundProduct = Inventory.lookupProduct(searchProductsField.getText());
         productTableView.getSelectionModel().select(foundProduct);
     }
     
+    // Handles page change on add product button click
     public void productsAddButtonHandler(ActionEvent event) throws IOException {
         Parent addProductParent = FXMLLoader.load(getClass().getResource("Product.fxml"));
         Scene inhousePartScene = new Scene(addProductParent);
@@ -135,16 +137,31 @@ public class MainController implements Initializable {
         window.show();
     }
     
-    public void productsModifyButtonHandler() {
-        // do something
+    // Handles page change on modify product button click
+    public void productsModifyButtonHandler(ActionEvent event) throws IOException {
+        Parent root;
+        Stage stage = (Stage) modifyProductsButton.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Product.fxml"));
+        
+        root = loader.load();
+        ProductController controller = loader.getController();
+        Product product = productTableView.getSelectionModel().getSelectedItem();
+        if(product != null) {
+            controller.passProductToModify(product);
+        }
+        
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
+    // Handles product delete button click
     public void productsDeleteButtonHandler() {
         Product productToDelete = productTableView.getSelectionModel().getSelectedItem();
         Inventory.deleteProduct(productToDelete);
     }
     
-    // Exit button handler
+    // Handles exit button click
     public void exitButtonHandler(ActionEvent event) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
