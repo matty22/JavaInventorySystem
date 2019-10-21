@@ -24,16 +24,12 @@ public class InhousePart extends Part {
         setPartMax(max);
     }
    
-    /**
-     * @return the machineId
-     */
+    // Get the inhouse part machine id
     public int getMachineId() {
         return machineId.get();
     }
 
-    /**
-     * @param machineId the machineId to set
-     */
+    // Set the inhouse part machine id
     public void setMachineId(int machineId) {
         this.machineId.set(machineId);
     }
