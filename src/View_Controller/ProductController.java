@@ -47,6 +47,11 @@ public class ProductController implements Initializable {
     @FXML private TableColumn<Part, Integer> partInventoryColumn;
     @FXML private TableColumn<Part, Double> partPriceColumn;
     
+    @FXML private TableColumn<Product, Integer> productPartIdColumn;
+    @FXML private TableColumn<Product, String> productPartNameColumn;
+    @FXML private TableColumn<Product, Integer> productPartInventoryColumn;
+    @FXML private TableColumn<Product, Double> productPartPriceColumn;
+    
     
     // FXML variables for buttons
     @FXML private Button searchButton;
@@ -67,25 +72,37 @@ public class ProductController implements Initializable {
         partInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
         partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
         
+        // Bind product table columns
+       productPartIdColumn.setCellValueFactory(new PropertyValueFactory<>("productID"));
+       productPartNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
+       productPartInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("productStock"));
+       productPartPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
+        
         // Add parts to top table
         // Set up dummy part data upon application first loading
         topTable.setItems(Inventory.getAllParts());
+        
+        // TODO: Loop through product and put all of its parts in the bottomTable
+        
     }    
     
-    // Button Handlers
-    
+    // Handles product screen search button click
     public void searchButtonHandler() {
-        // do something
+        Part foundPart = Inventory.lookupPart(searchBox.getText());
+        topTable.getSelectionModel().select(foundPart);
     }
     
+    // Handles add part to product button click
     public void addButtonHandler() {
         // do something
     }
     
+    // Handles delete part from product button click
     public void deleteButtonHandler() {
         // do something
     }
     
+    // Handles save product button click
     public void saveButtonHandler(ActionEvent event) throws IOException {
         ObservableList<Product> productList = Inventory.getAllProducts();
         Product newProduct = new Product(Integer.parseInt(idField.getText()), 
@@ -96,6 +113,7 @@ public class ProductController implements Initializable {
                                            Integer.parseInt(maxField.getText()),
                                            bottomTable.getItems()); 
         
+        // TODO: Needs refactor
         boolean newProductAlreadyExists = false;
         for(Product element : productList) {
             if (element.getProductId() == Integer.parseInt(idField.getText())) {
@@ -109,16 +127,17 @@ public class ProductController implements Initializable {
         } else {
             Inventory.addProduct(newProduct);
         }
-        
-        
-        //Inventory.addProduct(newProduct);
+       
         Parent cancelProductParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene cancelProductScene = new Scene(cancelProductParent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(cancelProductScene);
         window.show();
+        
+        // end refactor
     }
     
+    // Handles cancel button click
     public void cancelButtonHandler(ActionEvent event) throws IOException {
         Parent cancelProductParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene cancelProductScene = new Scene(cancelProductParent);
@@ -127,6 +146,7 @@ public class ProductController implements Initializable {
         window.show();
     }
     
+    // Passes product to product screen upon main screen modify button click
     public void passProductToModify(Product product) {
     this.currentProduct = product;
     idField.setText(product.getProductId().toString());
