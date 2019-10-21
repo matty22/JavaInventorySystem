@@ -50,7 +50,7 @@ public class InhousePartController implements Initializable {
         inhouseButton.setSelected(true);
     }    
     
-    // Button handlers
+    // Handles save button click
     public void saveButtonHandler(ActionEvent event) throws IOException {
         ObservableList<Part> partList = Inventory.getAllParts();
         Part newPart = new Part(Integer.parseInt(idField.getText()), 
@@ -83,6 +83,7 @@ public class InhousePartController implements Initializable {
         window.show();
     }
     
+    // Handles cancel button click
     public void cancelButtonHandler(ActionEvent event) throws IOException {
         Parent addPartParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene addPartScene = new Scene(addPartParent);
@@ -91,6 +92,7 @@ public class InhousePartController implements Initializable {
         window.show();
     }
     
+    // Handles swapping to outsourced part screen on radio button click
     public void swapOutsourcedButtonHandler(ActionEvent event) throws IOException {
         Parent addOutsourcedParent = FXMLLoader.load(getClass().getResource("OutsourcedPart.fxml"));
         Scene addPartScene = new Scene(addOutsourcedParent);
