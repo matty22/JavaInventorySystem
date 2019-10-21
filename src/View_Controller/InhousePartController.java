@@ -56,12 +56,12 @@ public class InhousePartController implements Initializable {
                                            Integer.parseInt(invField.getText()),
                                            Integer.parseInt(minField.getText()),
                                            Integer.parseInt(maxField.getText())) {}; 
-        //Below needs a refactor
+        
+        // Determine if the part should be updated or created
         boolean newPartAlreadyExists = false;
         for(Part element : partList) {
             if (element.getPartID() == Integer.parseInt(idField.getText())) {
                 newPartAlreadyExists = true;
-                
             }
         }
         
@@ -70,8 +70,6 @@ public class InhousePartController implements Initializable {
         } else {
             Inventory.addPart(newPart);
         }
-       
-        // end refactor
         
         Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene mainScene = new Scene(parent);

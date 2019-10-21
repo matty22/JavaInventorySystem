@@ -110,12 +110,11 @@ public class ProductController implements Initializable {
                                            Integer.parseInt(maxField.getText()),
                                            bottomTable.getItems()); 
         
-        // TODO: Needs refactor
+        // Determines if product should be updated or created
         boolean newProductAlreadyExists = false;
         for(Product element : productList) {
             if (element.getProductId() == Integer.parseInt(idField.getText())) {
-                newProductAlreadyExists = true;
-                
+                newProductAlreadyExists = true;   
             }
         }
         
