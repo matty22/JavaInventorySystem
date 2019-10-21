@@ -1,6 +1,5 @@
 package Model;
 
-
 public class OutsourcedPart extends Part {
     
     private int id;
@@ -16,16 +15,12 @@ public class OutsourcedPart extends Part {
         super(id, name, price, stock, min, max);
     }
 
-    /**
-     * @return the companyName
-     */
+    // Get the outsourced part company name
     public String getCompanyName() {
         return companyName;
     }
 
-    /**
-     * @param companyName the companyName to set
-     */
+    // Set the outsourced part company name
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }

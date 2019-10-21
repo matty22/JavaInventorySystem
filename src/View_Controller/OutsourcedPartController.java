@@ -37,19 +37,18 @@ public class OutsourcedPartController implements Initializable {
     // FXML variables for screen label
     @FXML private Label screenLabel;
     
-    /**
-     * Initializes the controller class.
-     */
+    // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         outsourcedButton.setSelected(true);
     }    
     
-    // Button handlers
+    // Handles save button click
     public void saveButtonHandler() {
         // do something
     }
     
+    // Handles cancel button click
     public void cancelButtonHandler(ActionEvent event) throws IOException {
         Parent addPartParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
         Scene addPartScene = new Scene(addPartParent);
@@ -58,6 +57,7 @@ public class OutsourcedPartController implements Initializable {
         window.show();
     }
     
+    // Handles swapping between outsourced and inhouse part screens
     public void swapOutsourcedButtonHandler(ActionEvent event) throws IOException {
         Parent addOutsourcedParent = FXMLLoader.load(getClass().getResource("InhousePart.fxml"));
         Scene addPartScene = new Scene(addOutsourcedParent);

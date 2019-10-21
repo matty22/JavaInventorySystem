@@ -24,88 +24,63 @@ public abstract class Part {
     }
     
 
-    /**
-     * @return the partID
-     */
+    // Gets the part id
     public Integer getPartID() {
         return partID.get();
     }
-
-    /**
-     * @param partID the partID to set
-     */
-    public void setPartID(int partID) {
-        this.partID.set(partID);
-    }
-
-    /**
-     * @return the partName
-     */
+    
+    // Gets the part name
     public String getPartName() {
         return partName.get();
     }
-
-    /**
-     * @param partName the partName to set
-     */
-    public void setPartName(String partName) {
-        this.partName.set(partName);
-    }
-
-    /**
-     * @return the partPrice
-     */
+    
+    // Gets the part price
     public double getPartPrice() {
         return partPrice.get();
     }
-
-    /**
-     * @param partPrice the partPrice to set
-     */
-    public void setPartPrice(double partPrice) {
-        this.partPrice.set(partPrice);
-    }
-
-    /**
-     * @return the partStock
-     */
+    
+    // Gets the part inventory
     public int getPartStock() {
         return partStock.get();
     }
-
-    /**
-     * @param partStock the partStock to set
-     */
-    public void setPartStock(int partStock) {
-        this.partStock.set(partStock);
-    }
-
-    /**
-     * @return the partMin
-     */
+    
+    // Get the part min stock
     public int getPartMin() {
         return partMin.get();
     }
-
-    /**
-     * @param partMin the partMin to set
-     */
-    public void setPartMin(int partMin) {
-        this.partMin.set(partMin);
-    }
-
-    /**
-     * @return the partMax
-     */
+    
+    // Get the part max stock
     public int getPartMax() {
         return partMax.get();
     }
 
-    /**
-     * @param partMax the partMax to set
-     */
+    // Sets the part id
+    public void setPartID(int partID) {
+        this.partID.set(partID);
+    }
+
+    // Sets the part name
+    public void setPartName(String partName) {
+        this.partName.set(partName);
+    }
+
+    // Sets the part price
+    public void setPartPrice(double partPrice) {
+        this.partPrice.set(partPrice);
+    }
+
+    // Sets the Part inventory
+    public void setPartStock(int partStock) {
+        this.partStock.set(partStock);
+    }
+
+    // Set the part min stock
+    public void setPartMin(int partMin) {
+        this.partMin.set(partMin);
+    }
+
+    // Set the part max stock
     public void setPartMax(int partMax) {
         this.partMax.set(partMax);
-    }
-      
+    }  
 }

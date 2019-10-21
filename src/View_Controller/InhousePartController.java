@@ -1,6 +1,5 @@
 package View_Controller;
 
-import Model.InhousePart;
 import Model.Inventory;
 import Model.Part;
 import java.io.IOException;
@@ -42,9 +41,7 @@ public class InhousePartController implements Initializable {
     @FXML private Label screenLabel;
     Part currentPart;
     
-    /**
-     * Initializes the controller class.
-     */
+    // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inhouseButton.setSelected(true);
@@ -102,7 +99,7 @@ public class InhousePartController implements Initializable {
     }
     
     
-    // Other methods
+    // Passes part data to modify part screen on modify part button click
     public void passPartToModify(Part part) {
     this.currentPart = part;
     idField.setText(part.getPartID().toString());

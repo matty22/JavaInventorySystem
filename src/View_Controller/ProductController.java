@@ -1,6 +1,5 @@
 package View_Controller;
 
-import Model.InhousePart;
 import Model.Inventory;
 import Model.Part;
 import Model.Product;
@@ -61,9 +60,7 @@ public class ProductController implements Initializable {
     @FXML private Button saveButton;
     Product currentProduct;
     
-    /**
-     * Initializes the controller class.
-     */
+    // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Bind top table columns

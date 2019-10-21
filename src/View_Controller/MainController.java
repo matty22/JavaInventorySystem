@@ -7,7 +7,6 @@ import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,10 +52,8 @@ public class MainController implements Initializable {
     @FXML private Button exitButton;
     static boolean entered;
     static boolean initialized = false;
-    static ObservableList<Part> dummyParts = Inventory.getAllParts();
     
-    
-    
+    // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        

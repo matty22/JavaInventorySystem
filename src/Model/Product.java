@@ -26,69 +26,82 @@ public class Product {
         setAssociatedParts(associatedParts);
     }
     
-    // Setters
+    // Sets product id
     public void setProductId(int id) {
         this.productID.set(id);
     }
     
+    // Sets product name
     public void setProductName(String name) {
         this.productName.set(name);
     }
     
+    // Sets product price
     public void setProductPrice(double price) {
         this.productPrice.set(price);
     }
     
+    // Sets product inventory
     public void setProductStock(int stock) {
         this.productStock.set(stock);
     }
     
+    // Sets product min stock
     public void setProductMin(int min) {
         this.productMin.set(min);
     }
     
+    // Sets product max stock
     public void setProductMax(int max) {
         this.productMax.set(max);
     }
     
+    // Sets product associated parts
     public void setAssociatedParts(ObservableList<Part> partList) {
         this.associatedParts = partList;
     }
     
-    // Getters
+    // Gets product id
     public Integer getProductId() {
         return productID.get();
     }
     
+    // Gets product name
     public String getProductName() {
         return productName.get();
     }
     
+    // Gets product price
     public double getProductPrice() {
         return productPrice.get();
     }
     
+    // Gets product inventory
     public int getProductStock() {
         return productStock.get();
     }
     
+    // Gets product min stock
     public int getProductMin() {
         return productMin.get();
     }
     
+    // Gets product max stock
     public int getProductMax() {
         return productMax.get();
     }
     
-    // Deal with parts
+    // Add part to product
     public void addAssociatedPart(Part part) {
     
     }
     
+    // Delete part from product
     public void deleteAssociatedPart(Part associatedPart) {
     
     }
     
+    // Get all associated parts for a product
     public ObservableList<Part> getAllAssociatedParts() {
         return this.associatedParts;
     }

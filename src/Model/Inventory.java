@@ -11,16 +11,17 @@ public class Inventory {
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
     
     
+    // Method to add a new part
     public static void addPart(Part newPart) {
         allParts.add(newPart); 
     }
     
+    // Method to add a new product
     public static void addProduct(Product newProduct) {
         allProducts.add(newProduct);
-        System.out.println("There are " + allProducts.toArray().length + " products");
     }
     
-  
+    // Method for searching for parts
     public static Part lookupPart(String partName) {
         for (Part part : allParts) {
             if (part.getPartName().contains(partName) || part.getPartID().toString().equals(partName)) {
@@ -30,6 +31,7 @@ public class Inventory {
         return null;
     }
     
+    // Method to search for products
     public static Product lookupProduct(String productName) {
       for (Product product : allProducts) {
             if (product.getProductName().contains(productName) || product.getProductId() == parseInt(productName)) {
@@ -39,6 +41,7 @@ public class Inventory {
         return null;
     }
     
+    // Method for updating an existing part
     public static void updatePart(Part modifiedPart) {
         for(Part part : allParts) {
             if(Objects.equals(part.getPartID(), modifiedPart.getPartID())) {
@@ -48,6 +51,7 @@ public class Inventory {
         }
     }
     
+    // Method for updating an existing product
     public static void updateProduct(Product modifiedProduct) {
         for(Product product : allProducts) {
             if(Objects.equals(product.getProductId(), modifiedProduct.getProductId())) {
@@ -57,18 +61,22 @@ public class Inventory {
         }
     }
     
+    // Method for deleting a part
     public static void deletePart(Part selectedPart) {
         allParts.remove(selectedPart);
     }
     
+    // Method for deleting a product
     public static void deleteProduct(Product selectedProduct) {
         allProducts.remove(selectedProduct);
     }
     
+    // Method to get all existing parts
     public static ObservableList<Part> getAllParts() {
         return Inventory.allParts;
     }
     
+    // Method to get all existing products
     public static ObservableList<Product> getAllProducts() {
         return Inventory.allProducts;
     }
