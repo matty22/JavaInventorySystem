@@ -77,6 +77,11 @@ public class MainController implements Initializable {
         Inventory.addPart(new InhousePart(1, "Screw", 1.20, 44, 0, 100));
         Inventory.addPart(new InhousePart(2, "Nail", 0.80, 66, 0, 100));
         Inventory.addPart(new InhousePart(3, "Washer", 0.15, 12, 0, 100));
+        
+        Inventory.addProduct(new Product(21, "Gizmo", 4.5, 99, 0, 100, null));
+        Inventory.addProduct(new Product(22, "Widget", 4.0, 72, 0, 100, null));
+        Inventory.addProduct(new Product(23, "Thingamajig", 3.9, 34, 0, 100, null));
+        
         initialized = true;
        }
        partTableView.setItems(Inventory.getAllParts());
@@ -84,12 +89,13 @@ public class MainController implements Initializable {
     }   
     
     
-    // Main screen parts panel button handlers
+    // Handles part search button click
     public void partsSearchButtonHandler(ActionEvent event) {
         Part foundPart = Inventory.lookupPart(searchPartsField.getText());
         partTableView.getSelectionModel().select(foundPart);
     }
     
+    // Handles add part button click
     public void partsAddButtonHandler(ActionEvent event) throws IOException {
         Parent inhousePartParent = FXMLLoader.load(getClass().getResource("InhousePart.fxml"));
         Scene inhousePartScene = new Scene(inhousePartParent);
@@ -98,6 +104,7 @@ public class MainController implements Initializable {
         window.show();
     }
     
+    // Handles modify part button click
     public void partsModifyButtonHandler(ActionEvent event) throws IOException {
         Parent root;
         Stage stage = (Stage) modifyPartsButton.getScene().getWindow();
