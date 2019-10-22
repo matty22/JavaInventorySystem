@@ -64,7 +64,7 @@ public class MainController implements Initializable {
        partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
        
        // Bind product table columns
-       productIdColumn.setCellValueFactory(new PropertyValueFactory<>("productID"));
+       productIdColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
        productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
        productInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("productStock"));
        productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
