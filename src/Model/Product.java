@@ -91,16 +91,6 @@ public class Product {
         return productMax.get();
     }
     
-    // Add part to product
-    public void addAssociatedPart(Part part) {
-        associatedParts.add(part);
-    }
-    
-    // Delete part from product
-//    public void deleteAssociatedPart(Part part) {
-//        this.associatedParts.remove(part);
-//    }
-    
     // Get all associated parts for a product
     public ObservableList<Part> getAllAssociatedParts() {
         return this.associatedParts;
