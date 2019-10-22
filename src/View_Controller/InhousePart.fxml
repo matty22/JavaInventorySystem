@@ -31,7 +31,7 @@
       <TextField fx:id="minField" layoutX="349.0" layoutY="331.0" prefHeight="27.0" prefWidth="69.0" />
       <Button fx:id="saveButton" layoutX="380.0" layoutY="449.0" mnemonicParsing="false" onAction="#saveButtonHandler" text="Save" />
       <Button fx:id="cancelButton" layoutX="445.0" layoutY="449.0" mnemonicParsing="false" onAction="#cancelButtonHandler" text="Cancel" />
-      <Label fx:id="screenLabel" layoutX="50.0" layoutY="44.0" text="Add Inhouse Part">
+      <Label fx:id="screenLabel" layoutX="50.0" layoutY="44.0" text="Add Part">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
          </font>

@@ -175,6 +175,7 @@ public class ProductController implements Initializable {
     invField.setText(String.valueOf(product.getProductStock()));
     maxField.setText(String.valueOf(product.getProductMax()));
     minField.setText(String.valueOf(product.getProductMin()));
+    screenLabel.setText("Modify Product");
     populateBottomTable();
     }
 }

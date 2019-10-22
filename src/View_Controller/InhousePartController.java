@@ -100,6 +100,7 @@ public class InhousePartController implements Initializable {
     // Passes part data to modify part screen on modify part button click
     public void passPartToModify(Part part) {
     this.currentPart = part;
+    screenLabel.setText("Modify Part");
     idField.setText(part.getPartID().toString());
     nameField.setText(part.getPartName());
     priceField.setText(String.valueOf(part.getPartPrice()));
