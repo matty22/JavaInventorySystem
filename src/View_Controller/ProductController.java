@@ -101,13 +101,10 @@ public class ProductController implements Initializable {
     public void addButtonHandler() {
         // Adds part to product
         Part selectedPart = (Part) (topTable.getSelectionModel().getSelectedItem());
-        if(bottomTable.getItems() != null) {
+        if(!bottomTable.getSelectionModel().isEmpty()) {
             productParts = bottomTable.getItems();
-            productParts.add(selectedPart);
-        } else {
-            productParts.add(selectedPart);
         }
-        
+        productParts.add(selectedPart);
         currentProduct.setAssociatedParts(productParts);
         
         // Populates bottom table
