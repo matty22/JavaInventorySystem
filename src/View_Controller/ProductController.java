@@ -83,9 +83,13 @@ public class ProductController implements Initializable {
         topTable.setItems(Inventory.getAllParts());
         
         // TODO: Loop through product and put all of its parts in the bottomTable
-        
 
-    }    
+    } 
+    
+    public void populateBottomTable() {
+        Product localCurrentProduct = currentProduct;
+        bottomTable.setItems(currentProduct.getAllAssociatedParts());
+    }
     
     // Handles product screen search button click
     public void searchButtonHandler() {
@@ -97,8 +101,13 @@ public class ProductController implements Initializable {
     public void addButtonHandler() {
         // Adds part to product
         Part selectedPart = (Part) (topTable.getSelectionModel().getSelectedItem());
-        productParts = bottomTable.getItems();
-        productParts.add(selectedPart);
+        if(bottomTable.getItems() != null) {
+            productParts = bottomTable.getItems();
+            productParts.add(selectedPart);
+        } else {
+            productParts.add(selectedPart);
+        }
+        
         currentProduct.setAssociatedParts(productParts);
         
         // Populates bottom table
@@ -131,7 +140,7 @@ public class ProductController implements Initializable {
                 newProductAlreadyExists = true;   
             }
         }
-        
+
         if (newProductAlreadyExists) {
             Inventory.updateProduct(newProduct);
         } else {
@@ -157,13 +166,13 @@ public class ProductController implements Initializable {
     // Passes product to product screen upon main screen modify button click
     public void passProductToModify(Product product) {
     this.currentProduct = product;
+    ObservableList<Part> tempPartList = null;
     idField.setText(product.getProductId().toString());
     nameField.setText(product.getProductName());
     priceField.setText(String.valueOf(product.getProductPrice()));
     invField.setText(String.valueOf(product.getProductStock()));
     maxField.setText(String.valueOf(product.getProductMax()));
     minField.setText(String.valueOf(product.getProductMin()));
-    //bottomTable.setItems(product.getAllAssociatedParts());
+    populateBottomTable();
     }
-    
 }
