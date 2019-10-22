@@ -6,6 +6,7 @@ import Model.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,10 +60,12 @@ public class ProductController implements Initializable {
     @FXML private Button cancelButton;
     @FXML private Button saveButton;
     Product currentProduct;
+    ObservableList<Part> productParts = FXCollections.observableArrayList();
     
     // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // Bind top table columns
         partIdColumn.setCellValueFactory(new PropertyValueFactory<>("partID"));
         partNameColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
@@ -70,10 +73,10 @@ public class ProductController implements Initializable {
         partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
         
         // Bind product table columns
-       productPartIdColumn.setCellValueFactory(new PropertyValueFactory<>("productID"));
-       productPartNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
-       productPartInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("productStock"));
-       productPartPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
+       productPartIdColumn.setCellValueFactory(new PropertyValueFactory<>("partID"));
+       productPartNameColumn.setCellValueFactory(new PropertyValueFactory<>("partName"));
+       productPartInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("partStock"));
+       productPartPriceColumn.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
         
         // Add parts to top table
         // Set up dummy part data upon application first loading
@@ -81,6 +84,7 @@ public class ProductController implements Initializable {
         
         // TODO: Loop through product and put all of its parts in the bottomTable
         
+
     }    
     
     // Handles product screen search button click
@@ -91,7 +95,15 @@ public class ProductController implements Initializable {
     
     // Handles add part to product button click
     public void addButtonHandler() {
-        // do something
+        // Adds part to product
+        Part selectedPart = (Part) (topTable.getSelectionModel().getSelectedItem());
+        productParts = bottomTable.getItems();
+        productParts.add(selectedPart);
+        currentProduct.setAssociatedParts(productParts);
+        
+        // Populates bottom table
+        bottomTable.setItems(currentProduct.getAllAssociatedParts());
+        
     }
     
     // Handles delete part from product button click
@@ -102,13 +114,15 @@ public class ProductController implements Initializable {
     // Handles save product button click
     public void saveButtonHandler(ActionEvent event) throws IOException {
         ObservableList<Product> productList = Inventory.getAllProducts();
-        Product newProduct = new Product(Integer.parseInt(idField.getText()), 
+        Product newProduct = new Product(
+                                           Integer.parseInt(idField.getText()), 
                                            nameField.getText(),
                                            Double.parseDouble(priceField.getText()),
                                            Integer.parseInt(invField.getText()),
                                            Integer.parseInt(minField.getText()),
                                            Integer.parseInt(maxField.getText()),
-                                           bottomTable.getItems()); 
+                                           bottomTable.getItems()
+                                        ); 
         
         // Determines if product should be updated or created
         boolean newProductAlreadyExists = false;
@@ -129,8 +143,6 @@ public class ProductController implements Initializable {
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(cancelProductScene);
         window.show();
-        
-        // end refactor
     }
     
     // Handles cancel button click
@@ -151,6 +163,7 @@ public class ProductController implements Initializable {
     invField.setText(String.valueOf(product.getProductStock()));
     maxField.setText(String.valueOf(product.getProductMax()));
     minField.setText(String.valueOf(product.getProductMin()));
+    //bottomTable.setItems(product.getAllAssociatedParts());
     }
     
 }

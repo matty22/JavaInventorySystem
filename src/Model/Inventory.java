@@ -24,7 +24,7 @@ public class Inventory {
     // Method for searching for parts
     public static Part lookupPart(String partName) {
         for (Part part : allParts) {
-            if (part.getPartName().contains(partName) || part.getPartID().toString().equals(partName)) {
+            if (part.getPartName().equals(partName) || part.getPartID().toString().equals(partName)) {
                 return part;
             }
         }
@@ -34,7 +34,7 @@ public class Inventory {
     // Method to search for products
     public static Product lookupProduct(String productName) {
       for (Product product : allProducts) {
-            if (product.getProductName().contains(productName) || product.getProductId() == parseInt(productName)) {
+            if (product.getProductName().equals(productName) || product.getProductId().toString().equals(productName)) {
                 return product;
             }
         }

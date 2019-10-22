@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 
 
 public class Product {
-    private ObservableList<Part> associatedParts;
+    private static ObservableList<Part> associatedParts;
     private final SimpleIntegerProperty productID = new SimpleIntegerProperty(0);
     private final SimpleStringProperty productName = new SimpleStringProperty("");
     private final SimpleDoubleProperty productPrice = new SimpleDoubleProperty(0.0);
@@ -92,14 +92,14 @@ public class Product {
     }
     
     // Add part to product
-    public void addAssociatedPart(Part part) {
-    
+    public static void addAssociatedPart(Part part) {
+        associatedParts.add(part);
     }
     
     // Delete part from product
-    public void deleteAssociatedPart(Part associatedPart) {
-    
-    }
+//    public void deleteAssociatedPart(Part part) {
+//        this.associatedParts.remove(part);
+//    }
     
     // Get all associated parts for a product
     public ObservableList<Part> getAllAssociatedParts() {

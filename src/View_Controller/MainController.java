@@ -75,9 +75,9 @@ public class MainController implements Initializable {
         Inventory.addPart(new InhousePart(2, "Nail", 0.80, 66, 0, 100));
         Inventory.addPart(new InhousePart(3, "Washer", 0.15, 12, 0, 100));
         
-        Inventory.addProduct(new Product(21, "Gizmo", 4.5, 99, 0, 100, null));
-        Inventory.addProduct(new Product(22, "Widget", 4.0, 72, 0, 100, null));
-        Inventory.addProduct(new Product(23, "Thingamajig", 3.9, 34, 0, 100, null));
+        Inventory.addProduct(new Product(99, "Gizmo", 4.5, 99, 0, 100, null));
+        Inventory.addProduct(new Product(98, "Widget", 4.0, 72, 0, 100, null));
+        Inventory.addProduct(new Product(97, "Thingamajig", 3.9, 34, 0, 100, null));
         
         initialized = true;
        }
@@ -94,10 +94,10 @@ public class MainController implements Initializable {
     
     // Handles add part button click
     public void partsAddButtonHandler(ActionEvent event) throws IOException {
-        Parent inhousePartParent = FXMLLoader.load(getClass().getResource("InhousePart.fxml"));
-        Scene inhousePartScene = new Scene(inhousePartParent);
+        Parent parent = FXMLLoader.load(getClass().getResource("InhousePart.fxml"));
+        Scene scene = new Scene(parent);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(inhousePartScene);
+        window.setScene(scene);
         window.show();
     }
     
