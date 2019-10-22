@@ -107,14 +107,19 @@ public class ProductController implements Initializable {
         productParts.add(selectedPart);
         currentProduct.setAssociatedParts(productParts);
         
-        // Populates bottom table
+        // Repopulate bottom table with updated associated parts
         bottomTable.setItems(currentProduct.getAllAssociatedParts());
         
     }
     
     // Handles delete part from product button click
     public void deleteButtonHandler() {
-        // do something
+        Part selectedPart = (Part) (bottomTable.getSelectionModel().getSelectedItem());
+        productParts = bottomTable.getItems();
+        productParts.remove(selectedPart);
+        
+        // Repopulate bottom table with updated associated parts
+        bottomTable.setItems(currentProduct.getAllAssociatedParts());
     }
     
     // Handles save product button click
