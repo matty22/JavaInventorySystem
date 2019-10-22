@@ -43,12 +43,14 @@ public class Inventory {
     
     // Method for updating an existing part
     public static void updatePart(Part modifiedPart) {
+        Part partToRemove = null;
         for(Part part : allParts) {
             if(Objects.equals(part.getPartID(), modifiedPart.getPartID())) {
-                allParts.remove(part);
-                allParts.add(modifiedPart);
+                partToRemove = part;
             }
         }
+        allParts.remove(partToRemove);
+        allParts.add(modifiedPart);
     }
     
     // Method for updating an existing product
