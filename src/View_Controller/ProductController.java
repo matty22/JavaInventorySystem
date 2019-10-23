@@ -65,6 +65,8 @@ public class ProductController implements Initializable {
     // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        idField.setDisable(true);
+        idField.setPromptText("ID Auto Generated");
         
         // Bind top table columns
         partIdColumn.setCellValueFactory(new PropertyValueFactory<>("partID"));

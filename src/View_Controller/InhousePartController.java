@@ -45,6 +45,8 @@ public class InhousePartController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inhouseButton.setSelected(true);
+        idField.setDisable(true);
+        idField.setPromptText("ID Auto Generated");
     }    
     
     // Handles save button click
