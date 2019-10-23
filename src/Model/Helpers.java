@@ -5,8 +5,11 @@
  */
 package Model;
 
+import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -36,6 +39,23 @@ public class Helpers {
         }
         usedProductIds.add(randomNumber);
         return randomNumber;
+    }
+    
+    // Throws error alert
+    public static void throwErrorAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Min value cannot exceed Max value");
+        alert.showAndWait();
+    }
+    
+    // Throws confirmation alert
+    public static String throwConfirmationAlert() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Are you sure?");
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get().getText();
     }
     
 }

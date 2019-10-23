@@ -98,11 +98,14 @@ public class InhousePartController implements Initializable {
     
     // Handles cancel button click
     public void cancelButtonHandler(ActionEvent event) throws IOException {
-        Parent addPartParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        Scene addPartScene = new Scene(addPartParent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(addPartScene);
-        window.show();
+        String buttonClicked = Helpers.throwConfirmationAlert();
+        if(buttonClicked.equals("OK")){
+            Parent addPartParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            Scene addPartScene = new Scene(addPartParent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(addPartScene);
+            window.show();
+        }
     }
     
     // Handles swapping to outsourced part screen on radio button click
