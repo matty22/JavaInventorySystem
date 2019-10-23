@@ -18,8 +18,18 @@ import javafx.scene.control.ButtonType;
 public class Helpers {
     
     // Observable Lists holding used ids
-    private static ObservableList<Integer> usedPartIds = FXCollections.observableArrayList();;
-    private static ObservableList<Integer> usedProductIds = FXCollections.observableArrayList();;
+    private static ObservableList<Integer> usedPartIds = FXCollections.observableArrayList();
+    private static ObservableList<Integer> usedProductIds = FXCollections.observableArrayList();
+    
+    // Add dummy data ids to lists
+    public static void addIDs(String type, int id) {
+        if (type.equals("part")) {
+            usedPartIds.add(id);
+        } else {
+            usedProductIds.add(id);
+        }
+        
+    }
     
     // Generate random id numbers for parts
     public static int generatePartId() {

@@ -78,13 +78,23 @@ public class MainController implements Initializable {
        
        // Set up dummy part data upon application first loading
        if(!initialized) {
-        Inventory.addPart(new InhousePart(1, "Screw", 1.20, 44, 0, 100));
-        Inventory.addPart(new InhousePart(2, "Nail", 0.80, 66, 0, 100));
-        Inventory.addPart(new InhousePart(3, "Washer", 0.15, 12, 0, 100));
+        Inventory.addPart(new InhousePart(324, "Screw", 1.20, 44, 0, 100));
+        Inventory.addPart(new InhousePart(8629, "Nail", 0.80, 66, 0, 100));
+        Inventory.addPart(new InhousePart(1003, "Washer", 0.15, 12, 0, 100));
         
-        Inventory.addProduct(new Product(99, "Gizmo", 4.5, 99, 0, 100, null));
-        Inventory.addProduct(new Product(98, "Widget", 4.0, 72, 0, 100, null));
-        Inventory.addProduct(new Product(97, "Thingamajig", 3.9, 34, 0, 100, null));
+        // Reserve these dummy part ids so created parts don't duplicate ids
+        Helpers.addIDs("Part", 324);
+        Helpers.addIDs("Part", 8629);
+        Helpers.addIDs("Part", 1003);
+        
+        Inventory.addProduct(new Product(4299, "Gizmo", 4.5, 99, 0, 100, null));
+        Inventory.addProduct(new Product(987, "Widget", 4.0, 72, 0, 100, null));
+        Inventory.addProduct(new Product(5376, "Thingamajig", 3.9, 34, 0, 100, null));
+        
+        // Reserve these dummy product ids so created products don't duplicate ids
+        Helpers.addIDs("Part", 4299);
+        Helpers.addIDs("Part", 987);
+        Helpers.addIDs("Part", 5376);
         
         initialized = true;
        }
