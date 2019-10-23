@@ -56,6 +56,12 @@ public class MainController implements Initializable {
     // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        // Disable modify and delete buttons until part or product selected from tables
+        modifyPartsButton.setDisable(true);
+        deletePartsButton.setDisable(true);
+        modifyProductsButton.setDisable(true);
+        deleteProductsButton.setDisable(true);
        
         // Bind part table columns
        partIdColumn.setCellValueFactory(new PropertyValueFactory<>("partID"));
@@ -169,6 +175,18 @@ public class MainController implements Initializable {
     public void exitButtonHandler(ActionEvent event) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
+    }
+    
+    // Enable modify and delete part buttons when part selected in part table
+    public void enableModifyDeleteButtons() {
+        if (partTableView.getSelectionModel().getSelectedItem() != null) {
+            modifyPartsButton.setDisable(false);
+            deletePartsButton.setDisable(false);
+        }
+        if(productTableView.getSelectionModel().getSelectedItem() != null) {
+            modifyProductsButton.setDisable(false);
+            deleteProductsButton.setDisable(false);
+        }
     }
     
 }
