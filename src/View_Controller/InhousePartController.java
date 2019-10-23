@@ -1,5 +1,6 @@
 package View_Controller;
 
+import Model.Helpers;
 import Model.Inventory;
 import Model.Part;
 import java.io.IOException;
@@ -52,7 +53,9 @@ public class InhousePartController implements Initializable {
     // Handles save button click
     public void saveButtonHandler(ActionEvent event) throws IOException {
         ObservableList<Part> partList = Inventory.getAllParts();
-        Part newPart = new Part(Integer.parseInt(idField.getText()), 
+        int newPartId = Helpers.generatePartId();
+        Part newPart = new Part(
+                                           newPartId, 
                                            nameField.getText(),
                                            Double.parseDouble(priceField.getText()),
                                            Integer.parseInt(invField.getText()),
@@ -62,7 +65,7 @@ public class InhousePartController implements Initializable {
         // Determine if the part should be updated or created
         boolean newPartAlreadyExists = false;
         for(Part element : partList) {
-            if (element.getPartID() == Integer.parseInt(idField.getText())) {
+            if (element.getPartID() == newPartId) {
                 newPartAlreadyExists = true;
             }
         }

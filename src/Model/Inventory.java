@@ -1,6 +1,5 @@
 package Model;
 
-import static java.lang.Integer.parseInt;
 import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
