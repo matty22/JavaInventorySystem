@@ -66,8 +66,14 @@ public class ProductController implements Initializable {
     // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        // Disable id field so it cannot be directly manipulated 
         idField.setDisable(true);
         idField.setPromptText("ID Auto Generated");
+        
+        // Disable add and remove part buttons unless part is selected from table views
+        addButton.setDisable(true);
+        deleteButton.setDisable(true);
         
         // Bind top table columns
         partIdColumn.setCellValueFactory(new PropertyValueFactory<>("partID"));
@@ -168,15 +174,25 @@ public class ProductController implements Initializable {
     
     // Passes product to product screen upon main screen modify button click
     public void passProductToModify(Product product) {
-    this.currentProduct = product;
-    ObservableList<Part> tempPartList = null;
-    idField.setText(product.getProductId().toString());
-    nameField.setText(product.getProductName());
-    priceField.setText(String.valueOf(product.getProductPrice()));
-    invField.setText(String.valueOf(product.getProductStock()));
-    maxField.setText(String.valueOf(product.getProductMax()));
-    minField.setText(String.valueOf(product.getProductMin()));
-    screenLabel.setText("Modify Product");
-    populateBottomTable();
+        this.currentProduct = product;
+        ObservableList<Part> tempPartList = null;
+        idField.setText(product.getProductId().toString());
+        nameField.setText(product.getProductName());
+        priceField.setText(String.valueOf(product.getProductPrice()));
+        invField.setText(String.valueOf(product.getProductStock()));
+        maxField.setText(String.valueOf(product.getProductMax()));
+        minField.setText(String.valueOf(product.getProductMin()));
+        screenLabel.setText("Modify Product");
+        populateBottomTable();
+    }
+    
+    // Enable modify and delete part buttons when part selected in part table
+    public void enableAddDeleteButtons() {
+        if (topTable.getSelectionModel().getSelectedItem() != null) {
+            addButton.setDisable(false);
+        }
+        if(bottomTable.getSelectionModel().getSelectedItem() != null) {
+            deleteButton.setDisable(false);
+        }
     }
 }
