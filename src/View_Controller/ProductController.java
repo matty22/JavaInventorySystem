@@ -16,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -131,7 +133,13 @@ public class ProductController implements Initializable {
     // Handles save product button click
     public void saveButtonHandler(ActionEvent event) throws IOException {
         ObservableList<Product> productList = Inventory.getAllProducts();
-        int newProductId = Helpers.generateProductId();
+        int newProductId;
+        if (this.currentProduct != null) {
+            newProductId = Integer.parseInt(idField.getText());
+        } else {
+            newProductId = Helpers.generateProductId();
+        }
+        
         Product newProduct = new Product(
                                            newProductId, 
                                            nameField.getText(),
@@ -141,26 +149,35 @@ public class ProductController implements Initializable {
                                            Integer.parseInt(maxField.getText()),
                                            bottomTable.getItems()
                                         ); 
-        
-        // Determines if product should be updated or created
-        boolean newProductAlreadyExists = false;
-        for(Product element : productList) {
-            if (element.getProductId() == newProductId) {
-                newProductAlreadyExists = true;   
-            }
-        }
-
-        if (newProductAlreadyExists) {
-            Inventory.updateProduct(newProduct);
+        // Make sure max > min && min < max
+        if (Integer.parseInt(minField.getText()) > Integer.parseInt(maxField.getText())) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Min value cannot exceed Max value");
+            alert.showAndWait();
         } else {
-            Inventory.addProduct(newProduct);
-        }
+            // Determines if product should be updated or created
+            boolean newProductAlreadyExists = false;
+            for(Product element : productList) {
+                if (element.getProductId() == newProductId) {
+                    newProductAlreadyExists = true;   
+                }
+            }
+
+            if (newProductAlreadyExists) {
+                Inventory.updateProduct(newProduct);
+            } else {
+                Inventory.addProduct(newProduct);
+            }
        
-        Parent cancelProductParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        Scene cancelProductScene = new Scene(cancelProductParent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(cancelProductScene);
-        window.show();
+            Parent cancelProductParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            Scene cancelProductScene = new Scene(cancelProductParent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(cancelProductScene);
+            window.show();
+        }
+        
+        
     }
     
     // Handles cancel button click

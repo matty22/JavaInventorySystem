@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -53,7 +54,12 @@ public class InhousePartController implements Initializable {
     // Handles save button click
     public void saveButtonHandler(ActionEvent event) throws IOException {
         ObservableList<Part> partList = Inventory.getAllParts();
-        int newPartId = Helpers.generatePartId();
+        int newPartId;
+        if (this.currentPart != null) {
+            newPartId = Integer.parseInt(idField.getText());
+        } else {
+            newPartId = Helpers.generatePartId();
+        }
         Part newPart = new Part(
                                            newPartId, 
                                            nameField.getText(),
@@ -61,26 +67,33 @@ public class InhousePartController implements Initializable {
                                            Integer.parseInt(invField.getText()),
                                            Integer.parseInt(minField.getText()),
                                            Integer.parseInt(maxField.getText())) {}; 
-        
-        // Determine if the part should be updated or created
-        boolean newPartAlreadyExists = false;
-        for(Part element : partList) {
-            if (element.getPartID() == newPartId) {
-                newPartAlreadyExists = true;
-            }
-        }
-        
-        if (newPartAlreadyExists) {
-            Inventory.updatePart(newPart);
+        // Make sure max > min && min < max
+        if (Integer.parseInt(minField.getText()) > Integer.parseInt(maxField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Min value cannot exceed Max value");
+            alert.showAndWait();
         } else {
-            Inventory.addPart(newPart);
-        }
+            // Determine if the part should be updated or created
+            boolean newPartAlreadyExists = false;
+            for(Part element : partList) {
+                if (element.getPartID() == newPartId) {
+                    newPartAlreadyExists = true;
+                }
+            }
         
-        Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        Scene mainScene = new Scene(parent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(mainScene);
-        window.show();
+            if (newPartAlreadyExists) {
+                Inventory.updatePart(newPart);
+            } else {
+                Inventory.addPart(newPart);
+            }
+        
+            Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            Scene mainScene = new Scene(parent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(mainScene);
+            window.show();
+        }
     }
     
     // Handles cancel button click
