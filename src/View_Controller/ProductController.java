@@ -122,12 +122,15 @@ public class ProductController implements Initializable {
     
     // Handles delete part from product button click
     public void deleteButtonHandler() {
-        Part selectedPart = (Part) (bottomTable.getSelectionModel().getSelectedItem());
-        productParts = bottomTable.getItems();
-        productParts.remove(selectedPart);
+        String buttonClicked = Helpers.throwConfirmationAlert();
+        if(buttonClicked.equals("OK")){
+            Part selectedPart = (Part) (bottomTable.getSelectionModel().getSelectedItem());
+            productParts = bottomTable.getItems();
+            productParts.remove(selectedPart);
         
-        // Repopulate bottom table with updated associated parts
-        bottomTable.setItems(currentProduct.getAllAssociatedParts());
+            // Repopulate bottom table with updated associated parts
+            bottomTable.setItems(currentProduct.getAllAssociatedParts());
+        }
     }
     
     // Handles save product button click
@@ -151,10 +154,7 @@ public class ProductController implements Initializable {
                                         ); 
         // Make sure max > min && min < max
         if (Integer.parseInt(minField.getText()) > Integer.parseInt(maxField.getText())) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Min value cannot exceed Max value");
-            alert.showAndWait();
+            Helpers.throwErrorAlert();
         } else {
             // Determines if product should be updated or created
             boolean newProductAlreadyExists = false;
@@ -182,11 +182,14 @@ public class ProductController implements Initializable {
     
     // Handles cancel button click
     public void cancelButtonHandler(ActionEvent event) throws IOException {
-        Parent cancelProductParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        Scene cancelProductScene = new Scene(cancelProductParent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(cancelProductScene);
-        window.show();
+        String buttonClicked = Helpers.throwConfirmationAlert();
+        if(buttonClicked.equals("OK")){
+            Parent cancelProductParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            Scene cancelProductScene = new Scene(cancelProductParent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(cancelProductScene);
+            window.show();
+        }
     }
     
     // Passes product to product screen upon main screen modify button click

@@ -1,5 +1,6 @@
 package View_Controller;
 
+import Model.Helpers;
 import Model.InhousePart;
 import Model.Inventory;
 import Model.Part;
@@ -127,8 +128,11 @@ public class MainController implements Initializable {
     
     // Handles part delete button click
     public void partsDeleteButtonHandler() {
-        Part partToDelete = partTableView.getSelectionModel().getSelectedItem();
-        Inventory.deletePart(partToDelete);
+        String buttonClicked = Helpers.throwConfirmationAlert();
+        if(buttonClicked.equals("OK")){
+            Part partToDelete = partTableView.getSelectionModel().getSelectedItem();
+            Inventory.deletePart(partToDelete);
+        }
     }
     
     
@@ -167,14 +171,21 @@ public class MainController implements Initializable {
     
     // Handles product delete button click
     public void productsDeleteButtonHandler() {
-        Product productToDelete = productTableView.getSelectionModel().getSelectedItem();
-        Inventory.deleteProduct(productToDelete);
+        String buttonClicked = Helpers.throwConfirmationAlert();
+        if(buttonClicked.equals("OK")){
+            Product productToDelete = productTableView.getSelectionModel().getSelectedItem();
+            Inventory.deleteProduct(productToDelete);
+        }
+        
     }
     
     // Handles exit button click
     public void exitButtonHandler(ActionEvent event) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        String buttonClicked = Helpers.throwConfirmationAlert();
+        if(buttonClicked.equals("OK")){
+            Stage stage = (Stage) exitButton.getScene().getWindow();
+            stage.close();
+        }
     }
     
     // Enable modify and delete part buttons when part selected in part table
