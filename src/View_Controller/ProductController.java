@@ -16,8 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -62,9 +60,8 @@ public class ProductController implements Initializable {
     @FXML private Button deleteButton;
     @FXML private Button cancelButton;
     @FXML private Button saveButton;
-    Product currentProduct;
     ObservableList<Part> productParts = FXCollections.observableArrayList();
-    
+    Product currentProduct = new Product(0, "Placeholder", 0.0, 0, 0, 0, productParts);
     // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -113,6 +110,7 @@ public class ProductController implements Initializable {
             productParts = bottomTable.getItems();
         }
         productParts.add(selectedPart);
+        // This line is the likely culprit
         currentProduct.setAssociatedParts(productParts);
         
         // Repopulate bottom table with updated associated parts
@@ -137,7 +135,7 @@ public class ProductController implements Initializable {
     public void saveButtonHandler(ActionEvent event) throws IOException {
         ObservableList<Product> productList = Inventory.getAllProducts();
         int newProductId;
-        if (this.currentProduct != null) {
+        if (this.currentProduct.getProductId() != 0) {
             newProductId = Integer.parseInt(idField.getText());
         } else {
             newProductId = Helpers.generateProductId();
