@@ -1,5 +1,6 @@
 package View_Controller;
 
+import Model.Helpers;
 import Model.Inventory;
 import Model.Part;
 import Model.Product;
@@ -83,9 +84,6 @@ public class ProductController implements Initializable {
         // Add parts to top table
         // Set up dummy part data upon application first loading
         topTable.setItems(Inventory.getAllParts());
-        
-        // TODO: Loop through product and put all of its parts in the bottomTable
-
     } 
     
     public void populateBottomTable() {
@@ -127,8 +125,9 @@ public class ProductController implements Initializable {
     // Handles save product button click
     public void saveButtonHandler(ActionEvent event) throws IOException {
         ObservableList<Product> productList = Inventory.getAllProducts();
+        int newProductId = Helpers.generateProductId();
         Product newProduct = new Product(
-                                           Integer.parseInt(idField.getText()), 
+                                           newProductId, 
                                            nameField.getText(),
                                            Double.parseDouble(priceField.getText()),
                                            Integer.parseInt(invField.getText()),
@@ -140,7 +139,7 @@ public class ProductController implements Initializable {
         // Determines if product should be updated or created
         boolean newProductAlreadyExists = false;
         for(Product element : productList) {
-            if (element.getProductId() == Integer.parseInt(idField.getText())) {
+            if (element.getProductId() == newProductId) {
                 newProductAlreadyExists = true;   
             }
         }
