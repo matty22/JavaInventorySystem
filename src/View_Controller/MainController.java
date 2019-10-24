@@ -120,16 +120,26 @@ public class MainController implements Initializable {
     }
     
     // Handles modify part button click
+    // TODO: add conditional to determine which modify screen 
+    //to go to based on if part is inhouse or outsourced
     public void partsModifyButtonHandler(ActionEvent event) throws IOException {
         Parent root;
         Stage stage = (Stage) modifyPartsButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InhousePart.fxml"));
-        root = loader.load();
-        InhousePartController controller = loader.getController();
-        
         Part part = partTableView.getSelectionModel().getSelectedItem();
-        if(part != null) {
-            controller.passPartToModify(part);
+        if (part.getPartType().equals("Inhouse")) {
+            InhousePart inhousePart = (InhousePart)(part);
+            int machineId = inhousePart.getMachineId();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("InhousePart.fxml"));
+            root = loader.load();
+            InhousePartController controller = loader.getController();
+            controller.passInhousePartToModify(part, machineId);
+        } else {
+            OutsourcedPart outsourcedPart = (OutsourcedPart)(part);
+            String companyName = outsourcedPart.getCompanyName();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OutsourcedPart.fxml"));
+            root = loader.load();
+            OutsourcedPartController controller = loader.getController();
+            controller.passOutsourcedPartToModify(part, companyName);
         }
         
         Scene scene = new Scene(root);

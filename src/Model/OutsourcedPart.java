@@ -17,14 +17,7 @@ public class OutsourcedPart extends Part {
         setPartMin(min);
         setPartMax(max);
         setCompanyName(company);
-    }
-
-    
-    // Overriding toString method for testing purposes
-    @Override
-    public String toString() {
-        String string = "name: " + getPartName() + " | company: " + companyName;
-        return string;
+        setPartType("Outsourced");
     }
     
     // Get the outsourced part company name
@@ -36,10 +29,4 @@ public class OutsourcedPart extends Part {
     public void setCompanyName(String companyName) {
         this.companyName.set(companyName);
     }
-    
-   
-    
-    
-    
-    
 }

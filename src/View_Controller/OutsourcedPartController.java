@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 
@@ -39,6 +40,7 @@ public class OutsourcedPartController implements Initializable {
     // FXML variables for buttons
     @FXML private Button saveButton;
     @FXML private Button cancelButton;
+    @FXML private ToggleGroup partChooser;
     
     // FXML variables for screen label
     @FXML private Label screenLabel;
@@ -88,7 +90,6 @@ public class OutsourcedPartController implements Initializable {
             if (newPartAlreadyExists) {
                 Inventory.updatePart(newPart);
             } else {
-                System.out.println(newPart.toString());
                 Inventory.addPart(newPart);
             }
         
@@ -119,6 +120,23 @@ public class OutsourcedPartController implements Initializable {
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
         window.setScene(addPartScene);
         window.show();
+    }
+    
+    // Passes part data to modify part screen on modify part button click
+    public void passOutsourcedPartToModify(Part part, String companyName) {
+        this.currentPart = part;
+        this.partChooser.getToggles().forEach(toggle -> {
+            Node node = (Node) toggle;
+            node.setDisable(true);
+        });
+        screenLabel.setText("Modify Outsourced Part");
+        idField.setText(part.getPartID().toString());
+        nameField.setText(part.getPartName());
+        priceField.setText(String.valueOf(part.getPartPrice()));
+        invField.setText(String.valueOf(part.getPartStock()));
+        maxField.setText(String.valueOf(part.getPartMax()));
+        minField.setText(String.valueOf(part.getPartMin()));
+        companyField.setText(companyName);
     }
     
 }

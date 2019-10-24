@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 
@@ -39,6 +40,7 @@ public class InhousePartController implements Initializable {
     // FXML variables for buttons
     @FXML private Button saveButton;
     @FXML private Button cancelButton;
+    @FXML private ToggleGroup partChooser;
     
     // FXML variables for screen label
     @FXML private Label screenLabel;
@@ -123,8 +125,12 @@ public class InhousePartController implements Initializable {
     
     
     // Passes part data to modify part screen on modify part button click
-    public void passPartToModify(Part part) {
+    public void passInhousePartToModify(Part part, int machineId) {
         this.currentPart = part;
+        this.partChooser.getToggles().forEach(toggle -> {
+            Node node = (Node) toggle;
+            node.setDisable(true);
+        });
         screenLabel.setText("Modify Inhouse Part");
         idField.setText(part.getPartID().toString());
         nameField.setText(part.getPartName());
@@ -132,6 +138,7 @@ public class InhousePartController implements Initializable {
         invField.setText(String.valueOf(part.getPartStock()));
         maxField.setText(String.valueOf(part.getPartMax()));
         minField.setText(String.valueOf(part.getPartMin()));
+        machineIdField.setText(String.valueOf(machineId));
     }
     
 }
