@@ -3,6 +3,7 @@ package View_Controller;
 import Model.Helpers;
 import Model.InhousePart;
 import Model.Inventory;
+import Model.OutsourcedPart;
 import Model.Part;
 import Model.Product;
 import java.io.IOException;
@@ -78,9 +79,9 @@ public class MainController implements Initializable {
        
        // Set up dummy part data upon application first loading
        if(!initialized) {
-        Inventory.addPart(new InhousePart(324, "Screw", 1.20, 44, 0, 100));
-        Inventory.addPart(new InhousePart(8629, "Nail", 0.80, 66, 0, 100));
-        Inventory.addPart(new InhousePart(1003, "Washer", 0.15, 12, 0, 100));
+        Inventory.addPart(new InhousePart(324, "Screw", 1.20, 44, 0, 100, 1));
+        Inventory.addPart(new InhousePart(8629, "Nail", 0.80, 66, 0, 100, 2));
+        Inventory.addPart(new OutsourcedPart(1003, "Washer", 0.15, 12, 0, 100, "Acme"));
         
         // Reserve these dummy part ids so created parts don't duplicate ids
         Helpers.addIDs("Part", 324);
@@ -123,9 +124,9 @@ public class MainController implements Initializable {
         Parent root;
         Stage stage = (Stage) modifyPartsButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("InhousePart.fxml"));
-        
         root = loader.load();
         InhousePartController controller = loader.getController();
+        
         Part part = partTableView.getSelectionModel().getSelectedItem();
         if(part != null) {
             controller.passPartToModify(part);
