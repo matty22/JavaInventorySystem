@@ -14,7 +14,7 @@ public class InhousePart extends Part {
     private SimpleIntegerProperty max = new SimpleIntegerProperty(0);
   
     // Constructor
-    public InhousePart(int id, String name, double price, int stock, int min, int max) {
+    public InhousePart(int id, String name, double price, int stock, int min, int max, int machineId) {
         super(id, name, price, stock, min, max);
         setPartID(id);
         setPartName(name);
@@ -22,8 +22,16 @@ public class InhousePart extends Part {
         setPartStock(stock);
         setPartMin(min);
         setPartMax(max);
+        setMachineId(machineId);
     }
    
+    // Overriding toString method for testing purposes
+    @Override
+    public String toString() {
+        String string = "name: " + getPartName() + " | machineId: " + machineId;
+        return string;
+    }
+    
     // Get the inhouse part machine id
     public int getMachineId() {
         return machineId.get();

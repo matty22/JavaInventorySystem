@@ -1,9 +1,13 @@
 package View_Controller;
 
 import Model.Helpers;
+import Model.Inventory;
+import Model.OutsourcedPart;
+import Model.Part;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -37,6 +42,7 @@ public class OutsourcedPartController implements Initializable {
     
     // FXML variables for screen label
     @FXML private Label screenLabel;
+    Part currentPart;
     
     // Initialize the controller
     @Override
@@ -47,8 +53,51 @@ public class OutsourcedPartController implements Initializable {
     }    
     
     // Handles save button click
-    public void saveButtonHandler() {
-        // do something
+    public void saveButtonHandler(ActionEvent event) throws IOException {
+        ObservableList<Part> partList = Inventory.getAllParts();
+        int newPartId;
+        if (this.currentPart != null) {
+            newPartId = Integer.parseInt(idField.getText());
+        } else {
+            newPartId = Helpers.generatePartId();
+        }
+        Part newPart = new OutsourcedPart(
+                                           newPartId, 
+                                           nameField.getText(),
+                                           Double.parseDouble(priceField.getText()),
+                                           Integer.parseInt(invField.getText()),
+                                           Integer.parseInt(minField.getText()),
+                                           Integer.parseInt(maxField.getText()),
+                                           companyField.getText()); 
+        
+        // Make sure max > min && min < max
+        if (Integer.parseInt(minField.getText()) > Integer.parseInt(maxField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Min value cannot exceed Max value");
+            alert.showAndWait();
+        } else {
+            // Determine if the part should be updated or created
+            boolean newPartAlreadyExists = false;
+            for(Part element : partList) {
+                if (element.getPartID() == newPartId) {
+                    newPartAlreadyExists = true;
+                }
+            }
+        
+            if (newPartAlreadyExists) {
+                Inventory.updatePart(newPart);
+            } else {
+                System.out.println(newPart.toString());
+                Inventory.addPart(newPart);
+            }
+        
+            Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            Scene mainScene = new Scene(parent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(mainScene);
+            window.show();
+        }
     }
     
     // Handles cancel button click

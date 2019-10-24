@@ -1,6 +1,7 @@
 package View_Controller;
 
 import Model.Helpers;
+import Model.InhousePart;
 import Model.Inventory;
 import Model.Part;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class InhousePartController implements Initializable {
     @FXML private TextField priceField;
     @FXML private TextField maxField;
     @FXML private TextField minField;
-    @FXML private TextField machineID;
+    @FXML private TextField machineIdField;
     
     // FXML variables for buttons
     @FXML private Button saveButton;
@@ -60,13 +61,15 @@ public class InhousePartController implements Initializable {
         } else {
             newPartId = Helpers.generatePartId();
         }
-        Part newPart = new Part(
+        Part newPart = new InhousePart(
                                            newPartId, 
                                            nameField.getText(),
                                            Double.parseDouble(priceField.getText()),
                                            Integer.parseInt(invField.getText()),
                                            Integer.parseInt(minField.getText()),
-                                           Integer.parseInt(maxField.getText())) {}; 
+                                           Integer.parseInt(maxField.getText()),
+                                           Integer.parseInt(machineIdField.getText())); 
+        
         // Make sure max > min && min < max
         if (Integer.parseInt(minField.getText()) > Integer.parseInt(maxField.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -85,6 +88,7 @@ public class InhousePartController implements Initializable {
             if (newPartAlreadyExists) {
                 Inventory.updatePart(newPart);
             } else {
+                System.out.println(newPart.toString());
                 Inventory.addPart(newPart);
             }
         
@@ -120,14 +124,14 @@ public class InhousePartController implements Initializable {
     
     // Passes part data to modify part screen on modify part button click
     public void passPartToModify(Part part) {
-    this.currentPart = part;
-    screenLabel.setText("Modify Part");
-    idField.setText(part.getPartID().toString());
-    nameField.setText(part.getPartName());
-    priceField.setText(String.valueOf(part.getPartPrice()));
-    invField.setText(String.valueOf(part.getPartStock()));
-    maxField.setText(String.valueOf(part.getPartMax()));
-    minField.setText(String.valueOf(part.getPartMin()));
+        this.currentPart = part;
+        screenLabel.setText("Modify Part");
+        idField.setText(part.getPartID().toString());
+        nameField.setText(part.getPartName());
+        priceField.setText(String.valueOf(part.getPartPrice()));
+        invField.setText(String.valueOf(part.getPartStock()));
+        maxField.setText(String.valueOf(part.getPartMax()));
+        minField.setText(String.valueOf(part.getPartMin()));
     }
     
 }
