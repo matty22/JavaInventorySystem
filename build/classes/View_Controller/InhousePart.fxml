@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.InhousePartController">
    <children>
-      <RadioButton fx:id="inhouseButton" layoutX="106.0" layoutY="104.0" mnemonicParsing="false" text="In House">
+      <RadioButton fx:id="inhouseButton" layoutX="106.0" layoutY="104.0" mnemonicParsing="false" text="Inhouse">
          <toggleGroup>
             <ToggleGroup fx:id="partChooser" />
          </toggleGroup></RadioButton>
@@ -31,7 +31,7 @@
       <TextField fx:id="minField" layoutX="349.0" layoutY="331.0" prefHeight="27.0" prefWidth="69.0" />
       <Button fx:id="saveButton" layoutX="380.0" layoutY="449.0" mnemonicParsing="false" onAction="#saveButtonHandler" text="Save" />
       <Button fx:id="cancelButton" layoutX="445.0" layoutY="449.0" mnemonicParsing="false" onAction="#cancelButtonHandler" text="Cancel" />
-      <Label fx:id="screenLabel" layoutX="50.0" layoutY="44.0" text="Add Part">
+      <Label fx:id="screenLabel" layoutX="50.0" layoutY="44.0" text="Add Inhouse Part">
          <font>
             <Font name="Arial Bold Italic" size="18.0" />
          </font>
