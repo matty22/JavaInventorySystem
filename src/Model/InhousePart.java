@@ -23,17 +23,11 @@ public class InhousePart extends Part {
         setPartMin(min);
         setPartMax(max);
         setMachineId(machineId);
-    }
-   
-    // Overriding toString method for testing purposes
-    @Override
-    public String toString() {
-        String string = "name: " + getPartName() + " | machineId: " + machineId;
-        return string;
+        setPartType("Inhouse");
     }
     
     // Get the inhouse part machine id
-    public int getMachineId() {
+    public Integer getMachineId() {
         return machineId.get();
     }
 

@@ -12,8 +12,9 @@ public abstract class Part {
     private SimpleIntegerProperty partStock = new SimpleIntegerProperty(0);
     private SimpleIntegerProperty partMin = new SimpleIntegerProperty(0);
     private SimpleIntegerProperty partMax = new SimpleIntegerProperty(0);
+    private SimpleStringProperty partType = new SimpleStringProperty("");
     
-    // Constructor
+    // Constructors
     public Part(int id, String name, double price, int stock, int min, int max) {
         setPartID(id);
         setPartName(name);
@@ -83,4 +84,14 @@ public abstract class Part {
     public void setPartMax(int partMax) {
         this.partMax.set(partMax);
     }  
+    
+    // Set the type of part: inhouse or outsourced
+    public void setPartType(String type) {
+        this.partType.set(type);
+    }
+    
+    // Get the type of part: inhouse or outsourced
+    public String getPartType() {
+        return this.partType.get();
+    }
 }
