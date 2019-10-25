@@ -64,20 +64,17 @@ public class InhousePartController implements Initializable {
             newPartId = Helpers.generatePartId();
         }
         Part newPart = new InhousePart(
-                                           newPartId, 
-                                           nameField.getText(),
-                                           Double.parseDouble(priceField.getText()),
-                                           Integer.parseInt(invField.getText()),
-                                           Integer.parseInt(minField.getText()),
-                                           Integer.parseInt(maxField.getText()),
-                                           Integer.parseInt(machineIdField.getText())); 
+                                        newPartId, 
+                                        nameField.getText(),
+                                        Double.parseDouble(priceField.getText()),
+                                        Integer.parseInt(invField.getText()),
+                                        Integer.parseInt(minField.getText()),
+                                        Integer.parseInt(maxField.getText()),
+                                        Integer.parseInt(machineIdField.getText())); 
         
         // Make sure max > min && min < max
         if (Integer.parseInt(minField.getText()) > Integer.parseInt(maxField.getText())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Min value cannot exceed Max value");
-            alert.showAndWait();
+            Helpers.throwErrorAlert();
         } else {
             // Determine if the part should be updated or created
             boolean newPartAlreadyExists = false;
@@ -87,13 +84,14 @@ public class InhousePartController implements Initializable {
                 }
             }
         
+            // Update or create part based on newPartAlreadyExists
             if (newPartAlreadyExists) {
                 Inventory.updatePart(newPart);
             } else {
-                System.out.println(newPart.toString());
                 Inventory.addPart(newPart);
             }
-        
+            
+            // Change screen back to Main
             Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
             Scene mainScene = new Scene(parent);
             Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -139,6 +137,5 @@ public class InhousePartController implements Initializable {
         maxField.setText(String.valueOf(part.getPartMax()));
         minField.setText(String.valueOf(part.getPartMin()));
         machineIdField.setText(String.valueOf(machineId));
-    }
-    
+    } 
 }
