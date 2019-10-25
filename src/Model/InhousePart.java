@@ -16,7 +16,6 @@ public class InhousePart extends Part {
         setPartMin(min);
         setPartMax(max);
         setMachineId(machineId);
-        setPartType("Inhouse");
     }
     
     // Get the inhouse part machine id

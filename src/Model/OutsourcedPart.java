@@ -16,7 +16,6 @@ public class OutsourcedPart extends Part {
         setPartMin(min);
         setPartMax(max);
         setCompanyName(company);
-        setPartType("Outsourced");
     }
     
     // Get the outsourced part company name

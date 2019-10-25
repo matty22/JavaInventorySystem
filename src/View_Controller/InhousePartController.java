@@ -3,6 +3,7 @@ package View_Controller;
 import Model.Helpers;
 import Model.InhousePart;
 import Model.Inventory;
+import Model.OutsourcedPart;
 import Model.Part;
 import java.io.IOException;
 import java.net.URL;
@@ -62,7 +63,7 @@ public class InhousePartController implements Initializable {
         } else {
             newPartId = Helpers.generatePartId();
         }
-        Part newPart = new InhousePart(
+        InhousePart newPart = new InhousePart(
                                         newPartId, 
                                         nameField.getText(),
                                         Double.parseDouble(priceField.getText()),
@@ -70,7 +71,7 @@ public class InhousePartController implements Initializable {
                                         Integer.parseInt(minField.getText()),
                                         Integer.parseInt(maxField.getText()),
                                         Integer.parseInt(machineIdField.getText())); 
-        
+      
         // Make sure max > min && min < max
         if (Integer.parseInt(minField.getText()) > Integer.parseInt(maxField.getText())) {
             Helpers.throwErrorAlert();
@@ -129,16 +130,27 @@ public class InhousePartController implements Initializable {
         Part part = this.currentPart;
         Parent root;
         Stage stage = (Stage) outsourcedButton.getScene().getWindow();
-        if (this.currentPart != null && this.currentPart.getPartType().equals("Inhouse")) {
-            this.currentPart.setPartType("Outsourced");
+        if (this.currentPart != null && this.currentPart instanceof InhousePart) {
+            // Create new outsourced part out of the values of the passed in inhouse part
+            OutsourcedPart outsourcedPart = new OutsourcedPart(
+                                                                part.getPartID(),
+                                                                part.getPartName(),
+                                                                part.getPartPrice(),
+                                                                part.getPartStock(),
+                                                                part.getPartMin(),
+                                                                part.getPartMax(),
+                                                                ""
+            );
+            
+            // Change page to OutsourcedPart.fxml and pass newly created outsourcedPart
             FXMLLoader loader = new FXMLLoader(getClass().getResource("OutsourcedPart.fxml"));
             root = loader.load();
             OutsourcedPartController controller = loader.getController();
-            controller.passOutsourcedPartToModify(part, "");
+            controller.passOutsourcedPartToModify(outsourcedPart, "");
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } else if (this.currentPart != null && this.currentPart.getPartType().equals("Outsourced")) {
+        } else if (this.currentPart != null && this.currentPart instanceof OutsourcedPart) {
             Parent addOutsourcedParent = FXMLLoader.load(getClass().getResource("InhousePart.fxml"));
             Scene addPartScene = new Scene(addOutsourcedParent);
             Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
