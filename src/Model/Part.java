@@ -14,7 +14,7 @@ public abstract class Part {
     private SimpleIntegerProperty partMax = new SimpleIntegerProperty(0);
     private SimpleStringProperty partType = new SimpleStringProperty("");
     
-    // Constructors
+    // Constructor
     public Part(int id, String name, double price, int stock, int min, int max) {
         setPartID(id);
         setPartName(name);
@@ -24,7 +24,6 @@ public abstract class Part {
         setPartMax(max);
     }
     
-
     // Gets the part id
     public Integer getPartID() {
         return partID.get();

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 import java.util.Optional;
@@ -11,10 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-/**
- *
- * @author Matty
- */
+// This class houses helper functions used in multiple
+// places around the codebase, to help keep things DRY
 public class Helpers {
     
     // Observable Lists holding used ids
@@ -22,13 +15,12 @@ public class Helpers {
     private static ObservableList<Integer> usedProductIds = FXCollections.observableArrayList();
     
     // Add dummy data ids to lists
-    public static void addIDs(String type, int id) {
+    public static void reserveDummyIDs(String type, int id) {
         if (type.equals("part")) {
             usedPartIds.add(id);
         } else {
             usedProductIds.add(id);
-        }
-        
+        } 
     }
     
     // Generate random id numbers for parts
@@ -67,5 +59,4 @@ public class Helpers {
         Optional<ButtonType> result = alert.showAndWait();
         return result.get().getText();
     }
-    
 }

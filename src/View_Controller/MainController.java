@@ -84,18 +84,18 @@ public class MainController implements Initializable {
         Inventory.addPart(new OutsourcedPart(1003, "Washer", 0.15, 12, 0, 100, "Acme"));
         
         // Reserve these dummy part ids so created parts don't duplicate ids
-        Helpers.addIDs("Part", 324);
-        Helpers.addIDs("Part", 8629);
-        Helpers.addIDs("Part", 1003);
+        Helpers.reserveDummyIDs("Part", 324);
+        Helpers.reserveDummyIDs("Part", 8629);
+        Helpers.reserveDummyIDs("Part", 1003);
         
         Inventory.addProduct(new Product(4299, "Gizmo", 4.5, 99, 0, 100, null));
         Inventory.addProduct(new Product(987, "Widget", 4.0, 72, 0, 100, null));
         Inventory.addProduct(new Product(5376, "Thingamajig", 3.9, 34, 0, 100, null));
         
         // Reserve these dummy product ids so created products don't duplicate ids
-        Helpers.addIDs("Part", 4299);
-        Helpers.addIDs("Part", 987);
-        Helpers.addIDs("Part", 5376);
+        Helpers.reserveDummyIDs("Part", 4299);
+        Helpers.reserveDummyIDs("Part", 987);
+        Helpers.reserveDummyIDs("Part", 5376);
         
         initialized = true;
        }
@@ -120,12 +120,11 @@ public class MainController implements Initializable {
     }
     
     // Handles modify part button click
-    // TODO: add conditional to determine which modify screen 
-    //to go to based on if part is inhouse or outsourced
     public void partsModifyButtonHandler(ActionEvent event) throws IOException {
         Parent root;
         Stage stage = (Stage) modifyPartsButton.getScene().getWindow();
         Part part = partTableView.getSelectionModel().getSelectedItem();
+        // If the part is inhouse, cast to inhouse part and load inhouse part screen
         if (part.getPartType().equals("Inhouse")) {
             InhousePart inhousePart = (InhousePart)(part);
             int machineId = inhousePart.getMachineId();
@@ -134,6 +133,7 @@ public class MainController implements Initializable {
             InhousePartController controller = loader.getController();
             controller.passInhousePartToModify(part, machineId);
         } else {
+            // If the part is outsourced, cast to outsourced part and load outsourced part screen
             OutsourcedPart outsourcedPart = (OutsourcedPart)(part);
             String companyName = outsourcedPart.getCompanyName();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("OutsourcedPart.fxml"));
@@ -196,8 +196,7 @@ public class MainController implements Initializable {
         if(buttonClicked.equals("OK")){
             Product productToDelete = productTableView.getSelectionModel().getSelectedItem();
             Inventory.deleteProduct(productToDelete);
-        }
-        
+        }   
     }
     
     // Handles exit button click
@@ -220,5 +219,4 @@ public class MainController implements Initializable {
             deleteProductsButton.setDisable(false);
         }
     }
-    
 }

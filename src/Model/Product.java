@@ -94,6 +94,5 @@ public class Product {
     // Get all associated parts for a product
     public ObservableList<Part> getAllAssociatedParts() {
         return this.associatedParts;
-    }
-    
+    }  
 }

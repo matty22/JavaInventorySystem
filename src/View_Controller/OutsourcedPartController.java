@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -74,10 +73,7 @@ public class OutsourcedPartController implements Initializable {
         
         // Make sure max > min && min < max
         if (Integer.parseInt(minField.getText()) > Integer.parseInt(maxField.getText())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Min value cannot exceed Max value");
-            alert.showAndWait();
+            Helpers.throwErrorAlert();
         } else {
             // Determine if the part should be updated or created
             boolean newPartAlreadyExists = false;
@@ -137,6 +133,5 @@ public class OutsourcedPartController implements Initializable {
         maxField.setText(String.valueOf(part.getPartMax()));
         minField.setText(String.valueOf(part.getPartMin()));
         companyField.setText(companyName);
-    }
-    
+    }  
 }

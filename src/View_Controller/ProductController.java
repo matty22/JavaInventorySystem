@@ -24,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+
 public class ProductController implements Initializable {
 
     // FXML variables for left side text fields
@@ -62,6 +63,7 @@ public class ProductController implements Initializable {
     @FXML private Button saveButton;
     ObservableList<Part> productParts = FXCollections.observableArrayList();
     Product currentProduct = new Product(0, "Placeholder", 0.0, 0, 0, 0, productParts);
+    
     // Initialize the controller
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -91,6 +93,7 @@ public class ProductController implements Initializable {
         topTable.setItems(Inventory.getAllParts());
     } 
     
+    // Populates bottom table with parts
     public void populateBottomTable() {
         Product localCurrentProduct = currentProduct;
         bottomTable.setItems(currentProduct.getAllAssociatedParts());
@@ -114,8 +117,7 @@ public class ProductController implements Initializable {
         currentProduct.setAssociatedParts(productParts);
         
         // Repopulate bottom table with updated associated parts
-        bottomTable.setItems(currentProduct.getAllAssociatedParts());
-        
+        bottomTable.setItems(currentProduct.getAllAssociatedParts());    
     }
     
     // Handles delete part from product button click
@@ -162,20 +164,20 @@ public class ProductController implements Initializable {
                 }
             }
 
+            // Update or create product based on value of newProductAlreadyExists
             if (newProductAlreadyExists) {
                 Inventory.updateProduct(newProduct);
             } else {
                 Inventory.addProduct(newProduct);
             }
        
+            // Change scene to main
             Parent cancelProductParent = FXMLLoader.load(getClass().getResource("Main.fxml"));
             Scene cancelProductScene = new Scene(cancelProductParent);
             Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
             window.setScene(cancelProductScene);
             window.show();
-        }
-        
-        
+        } 
     }
     
     // Handles cancel button click
