@@ -7,7 +7,6 @@ import Model.OutsourcedPart;
 import Model.Part;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,7 +63,7 @@ public class OutsourcedPartController implements Initializable {
         } else {
             newPartId = Helpers.generatePartId();
         }
-        Part newPart = new OutsourcedPart(
+        OutsourcedPart newPart = new OutsourcedPart(
                                            newPartId, 
                                            nameField.getText(),
                                            Double.parseDouble(priceField.getText()),
@@ -129,16 +128,27 @@ public class OutsourcedPartController implements Initializable {
         Part part = this.currentPart;
         Parent root;
         Stage stage = (Stage) inhouseButton.getScene().getWindow();
-        if (this.currentPart != null && this.currentPart.getPartType().equals("Outsourced")) {
-            this.currentPart.setPartType("Inhouse");
+        if (this.currentPart != null && this.currentPart instanceof OutsourcedPart) {
+            // Create new inhouse part out of the values of the passed in outsourced part
+            InhousePart inhousePart = new InhousePart(
+                                                       part.getPartID(),
+                                                       part.getPartName(),
+                                                       part.getPartPrice(),
+                                                       part.getPartStock(),
+                                                       part.getPartMin(),
+                                                       part.getPartMax(),
+                                                       0
+            );
+            
+            // Change page to InhousePart.fxml and pass newly created inhousePart
             FXMLLoader loader = new FXMLLoader(getClass().getResource("InhousePart.fxml"));
             root = loader.load();
             InhousePartController controller = loader.getController();
-            controller.passInhousePartToModify(part, 0);
+            controller.passInhousePartToModify(inhousePart, 0);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } else if (this.currentPart != null && this.currentPart.getPartType().equals("Inhouse")) {
+        } else if (this.currentPart != null && this.currentPart instanceof InhousePart) {
             Parent addOutsourcedParent = FXMLLoader.load(getClass().getResource("OutsourcedPart.fxml"));
             Scene addPartScene = new Scene(addOutsourcedParent);
             Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();

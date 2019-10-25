@@ -125,7 +125,7 @@ public class MainController implements Initializable {
         Stage stage = (Stage) modifyPartsButton.getScene().getWindow();
         Part part = partTableView.getSelectionModel().getSelectedItem();
         // If the part is inhouse, cast to inhouse part and load inhouse part screen
-        if (part.getPartType().equals("Inhouse")) {
+        if (part instanceof InhousePart) {
             InhousePart inhousePart = (InhousePart)(part);
             int machineId = inhousePart.getMachineId();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("InhousePart.fxml"));
