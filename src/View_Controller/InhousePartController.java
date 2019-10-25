@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -112,23 +111,9 @@ public class InhousePartController implements Initializable {
         }
     }
     
-    // Handles swapping to outsourced part screen on radio button click
-    public void swapOutsourcedButtonHandler(ActionEvent event) throws IOException {
-        Parent addOutsourcedParent = FXMLLoader.load(getClass().getResource("OutsourcedPart.fxml"));
-        Scene addPartScene = new Scene(addOutsourcedParent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(addPartScene);
-        window.show();
-    }
-    
-    
     // Passes part data to modify part screen on modify part button click
     public void passInhousePartToModify(Part part, int machineId) {
         this.currentPart = part;
-        this.partChooser.getToggles().forEach(toggle -> {
-            Node node = (Node) toggle;
-            node.setDisable(true);
-        });
         screenLabel.setText("Modify Inhouse Part");
         idField.setText(part.getPartID().toString());
         nameField.setText(part.getPartName());
@@ -138,4 +123,33 @@ public class InhousePartController implements Initializable {
         minField.setText(String.valueOf(part.getPartMin()));
         machineIdField.setText(String.valueOf(machineId));
     } 
+    
+    // Handle switching between inhouse/outsourced add and modify screens
+    public void swapOutsourcedButtonHandler(ActionEvent event) throws IOException {
+        Part part = this.currentPart;
+        Parent root;
+        Stage stage = (Stage) outsourcedButton.getScene().getWindow();
+        if (this.currentPart != null && this.currentPart.getPartType().equals("Inhouse")) {
+            this.currentPart.setPartType("Outsourced");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OutsourcedPart.fxml"));
+            root = loader.load();
+            OutsourcedPartController controller = loader.getController();
+            controller.passOutsourcedPartToModify(part, "");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } else if (this.currentPart != null && this.currentPart.getPartType().equals("Outsourced")) {
+            Parent addOutsourcedParent = FXMLLoader.load(getClass().getResource("InhousePart.fxml"));
+            Scene addPartScene = new Scene(addOutsourcedParent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(addPartScene);
+            window.show();
+        } else if (this.currentPart == null) {
+            Parent addOutsourcedParent = FXMLLoader.load(getClass().getResource("OutsourcedPart.fxml"));
+            Scene addPartScene = new Scene(addOutsourcedParent);
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(addPartScene);
+            window.show();
+        }
+    }
 }
